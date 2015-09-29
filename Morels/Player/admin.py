@@ -5,7 +5,6 @@ from django.contrib import admin
 from .models import *
 
 admin.site.register(Player)
-admin.site.register(User)
 admin.site.register(Bot)
-admin.site.register(Insults)
+admin.site.register(Insult)
 admin.site.register(LeaderBoard)
