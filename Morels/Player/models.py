@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-# import Game
-# from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
 
 # Create your models here.
 
