@@ -18,7 +18,7 @@ class Insult(models.Model):
         return self.insults
 
 class MyUser(models.Model):
-    location = models.TextField(max_length=500)
+    # location = models.TextField(max_length=500)
     profilePic = models.ImageField(upload_to=None, height_field=100, width_field=100, max_length= 100)
     level = models.IntegerField()
 
