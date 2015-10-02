@@ -27,13 +27,13 @@ class Game(models.Model):
     player_1 = models.ForeignKey(User, related_name='+')
     player_2 = models.ForeignKey(User, related_name='+')
 
-    deckCard = models.ManyToManyField(Card, related_name='+')
-    forestCard = models.ManyToManyField(Card, related_name='+')
-    nightDeckCard = models.ManyToManyField(Card, related_name='+')
-    decayDeckCard = models.ManyToManyField(Card, related_name='+')
+    deckCard = models.ForeignKey(Card, related_name='+')
+    forestCard = models.ForeignKey(Card, related_name='+')
+    nightDeckCard = models.ForeignKey(Card, related_name='+')
+    decayDeckCard = models.ForeignKey(Card, related_name='+')
 
 
-class Playing_Card(models.Model):
+class PlayingCard(models.Model):
     fryingPan_id = models.ForeignKey(FryingPan)
     card_id = models.ForeignKey(Card)
 

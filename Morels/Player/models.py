@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Player(models.Model):
-    score = models.IntegerField(max_length=100)
+    score = models.IntegerField()
 
     userHand = models.ManyToManyField('Game.Card')
 

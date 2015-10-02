@@ -1,4 +1,5 @@
-[{
+[
+  {
     "model": "Game.Card",
     "pk": 1,
     "fields": {
@@ -7,7 +8,6 @@
       "type": "Honey Fungus"
     }
   },
-
   {
     "model": "Game.Card",
     "pk": 2,
