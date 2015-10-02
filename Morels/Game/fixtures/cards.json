@@ -62,6 +62,7 @@
       "type": "Lawyer's Wig"
     }
   },
+
     {
     "model": "Game.Card",
     "pk": 8,

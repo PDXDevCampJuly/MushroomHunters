@@ -27,10 +27,10 @@ class Game(models.Model):
     player_1 = models.ForeignKey(User, related_name='+')
     player_2 = models.ForeignKey(User, related_name='+')
 
-    deckCard = models.ForeignKey(Card, related_name='+')
-    forestCard = models.ForeignKey(Card, related_name='+')
-    nightDeckCard = models.ForeignKey(Card, related_name='+')
-    decayDeckCard = models.ForeignKey(Card, related_name='+')
+    deckCard = models.ForeignKey(Card, related_name='+', default=None)
+    forestCard = models.ForeignKey(Card, related_name='+', default=None)
+    nightDeckCard = models.ForeignKey(Card, related_name='+', default=None)
+    decayDeckCard = models.ForeignKey(Card, related_name='+', default=None)
 
 
 class PlayingCard(models.Model):

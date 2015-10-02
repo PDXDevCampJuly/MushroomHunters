@@ -4,5 +4,5 @@ from .models import *
 
 admin.site.register(Game)
 admin.site.register(Card)
-admin.site.register(Playing_Card)
+admin.site.register(PlayingCard)
 admin.site.register(FryingPan)
