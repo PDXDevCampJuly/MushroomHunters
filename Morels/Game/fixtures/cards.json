@@ -89,5 +89,50 @@
       "stickValue": 0,
       "type": "Destroying Angel"
     }
+  },
+  {
+    "model": "Game.Card",
+    "pk": 11,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "pk": 12,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "type": "Basket"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "pk": 13,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "pk": 14,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "type": "Butter"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "pk": 15,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "type": "Cider"
+    }
   }
 ]
