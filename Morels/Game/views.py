@@ -1,15 +1,36 @@
 from django.shortcuts import render
 from .models import *
 import sys
-
+from django.shortcuts import render_to_response,redirect
+from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 game = Game()
 
 def signup(request):
+    state = "Sign up now!"
+    username = password = ""
 
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
 
-    return render(request, 'signup.html')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                # state = "Logged in"
+                return redirect('/main/')
+    return render(request, 'signup.html', context_instance=RequestContext(request))
+            # else:
+            #     state = "Not active"
+@login_required(login_url='/login/')
+def main(request):
+    pass
+        # else:
+        #     state = "your username or password was incorrect"
 
 # def make_decks(request):
 #     games = Game.objects.all()
