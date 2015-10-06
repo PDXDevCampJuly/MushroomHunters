@@ -24,3 +24,10 @@ urlpatterns = [
     url(r'^home/', 'Game.views.home', name='home'),
     url(r'^logout/$', 'Game.views.user_logout', name='logout')
 ]
+
+
+def custom_login(request):
+    if request.user.is_authenticated():
+        return redirect('/home/')
+    else:
+        return login(request)

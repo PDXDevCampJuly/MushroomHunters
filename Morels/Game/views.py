@@ -5,11 +5,15 @@ from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import login
 
 # Create your views here.
 from Game.forms.forms import UserForm, UserProfileForm
 
 def signup(request):
+    
+    if request.user.is_authenticated():
+        return redirect('/home/')
 
     registered = False
     if request.method == 'POST':
@@ -75,15 +79,7 @@ def user_logout(request):
     return redirect('/login/')
 
 def home(request):
-    return render(request, 'home.html')
-        # else:
-        #     state = "your username or password was incorrect"
-
-# def make_decks(request):
-#     games = Game.objects.all()
-#
-#     for i in range():
-
-
-    # Get the cards from the db
-    #Loop through the cards in Cards and push them in a deck
+    if request.user.is_authenticated():
+        return render(request, 'home.html')
+    else:
+        return redirect('/')
