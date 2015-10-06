@@ -9,8 +9,19 @@ from django.contrib.auth import authenticate, login, logout
 
 game = Game()
 
+def realsignup(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    email = request.POST['email']
+    pic = request.POST['profile']
+    user = MyUser.objects.create_user(username, password, email, 0, pic)
+
+    user.save
+
+
+
 def signup(request):
-    state = "Sign up now!"
+    # state = "Sign up now!"
     username = password = ""
 
     if request.POST:
