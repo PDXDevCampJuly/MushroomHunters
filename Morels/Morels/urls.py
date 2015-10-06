@@ -20,5 +20,7 @@ from Game import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'Game.views.signup', name='signup'),
-    url(r'^login/', 'Game.views.log_in', name='login')
+    url(r'^login/', 'Game.views.log_in', name='login'),
+    url(r'^home/', 'Game.views.home', name='home'),
+    url(r'^logout/$', 'Game.views.user_logout', name='logout')
 ]

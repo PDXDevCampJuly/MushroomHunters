@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <nav>
+        <a href="/logout/">Logout</a>
+        <a href="#">Leader Board</a>
+        <a href="#">V</a>
+    </nav>
+    <main>
+        <h1>Play a game!</h1>
+        <a href="#">play with bot!</a><br>
+        <a href="#">Play with randomized player!</a><br>
+        <a href="#">Invite your friend!</a><br>
+    </main>
+    {% else %}
+    <a href="/">Register Here</a><br />
+    <a href="/login/">Login</a><br />
+    {% endif %}
+
+    <!--<a href="/rango/about/">About</a><br/>-->
+    <!--<a href="/rango/add_category/">Add a New Category</a><br />-->
+</body>
+</html>

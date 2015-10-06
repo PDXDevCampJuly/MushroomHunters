@@ -45,27 +45,13 @@ def signup(request):
             'signup.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
-
-
-
-#
 game = Game()
-
-# def signup(self):
-    # username = request.POST['username']
-    # password = request.POST['password']
-    # email = request.POST['email']
-    # pic = request.POST['profile']
-    # user = MyUser.objects.create_user(username, password, email, 0, pic)
-
-    # return render(request, 'signup.html')
-
-    # user.save
-
-
 
 def log_in(request):
     username = password = ""
+
+    if request.user.is_authenticated():
+        return redirect('/home/')
 
     if request.POST:
         username = request.POST['username']
@@ -76,13 +62,20 @@ def log_in(request):
             if user.is_active:
                 login(request, user)
                 # state = "Logged in"
-                return redirect('/main/')
+                return redirect('/home/')
     return render(request, 'login.html', context_instance=RequestContext(request))
             # else:
             #     state = "Not active"
 @login_required(login_url='/login')
-def main(request):
-    pass
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return redirect('/login/')
+
+def home(request):
+    return render(request, 'home.html')
         # else:
         #     state = "your username or password was incorrect"
 
