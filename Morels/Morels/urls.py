@@ -20,5 +20,5 @@ from Game import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'Game.views.signup', name='signup'),
-    url(r'^login/', 'Game.views.signup', name='login')
+    url(r'^login/', 'Game.views.log_in', name='login')
 ]

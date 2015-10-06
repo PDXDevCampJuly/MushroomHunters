@@ -5,10 +5,13 @@ from django.contrib.auth.models import User
 
 class MyUser(models.Model):
     # location = models.TextField(max_length=500)
-    profilePic = models.ImageField(upload_to=None, height_field=100, width_field=100, max_length= 100)
-    level = models.IntegerField()
+    profilePic = models.ImageField(upload_to='profile_images', blank=True)
+    level = models.IntegerField(default=0)
 
     user = models.OneToOneField(User)
+
+    def __unicode__(self):
+        return self.user.username
 
 class Player(models.Model):
     score = models.IntegerField()
