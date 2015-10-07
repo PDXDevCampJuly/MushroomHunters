@@ -86,6 +86,10 @@ WSGI_APPLICATION = 'Morels.wsgi.application'
 #     }
 # }
 
+# NEW
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+# END OF NEW2
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

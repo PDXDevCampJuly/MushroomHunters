@@ -8,7 +8,7 @@ from Player.models import *
 class Card(models.Model):
     cardValue = models.IntegerField()
     stickValue = models.IntegerField()
-    picture = models.ImageField(upload_to=None, blank=False, default="../../Static/morel")
+    picture = models.ImageField(upload_to=None, blank=False, default="../../static")
     type = models.CharField(max_length=50)
 
     def __str__(self):

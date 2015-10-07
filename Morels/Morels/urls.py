@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from Player import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -23,11 +25,4 @@ urlpatterns = [
     url(r'^login/', 'Player.views.log_in', name='login'),
     url(r'^home/', 'Player.views.home', name='home'),
     url(r'^logout/$', 'Player.views.user_logout', name='logout')
-]
-
-
-# def custom_login(request):
-#     if request.user.is_authenticated():
-#         return redirect('/home/')
-#     else:
-#         return login(request)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

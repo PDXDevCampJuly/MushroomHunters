@@ -10,14 +10,13 @@
         {% else %}
         <h1>Sign up!</h1><br />
 
-        <form id="user_form" method="post" action="/"
-                enctype="multipart/form-data">
+        <form id="user_form" method="post" action="/" enctype='multipart/form-data'>
 
             {% csrf_token %}
             {{ user_form.as_p }}
             {{ profile_form.as_p }}
 
-            <input type="submit" name="submit" value="Register" action="/login/"/>
+            <input type="submit" name="submit" value="Register"/>
         </form>
         {% endif %}
     </body>

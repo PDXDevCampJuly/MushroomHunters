@@ -10,7 +10,7 @@ class MyUser(models.Model):
 
     user = models.OneToOneField(User)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username
 
 class Player(models.Model):

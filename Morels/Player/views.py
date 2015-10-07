@@ -17,21 +17,23 @@ def signup(request):
     if request.method == 'POST':
 
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-        print(request.POST)
+        profile_form = UserProfileForm(data=request.FILES)
+        # print(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
-            print('form is valid')
+            print('formsorm is valid')
 
             user = user_form.save()
             user.set_password(user.password)
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
+            print(request.FILES)
 
-
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
+            try:
+                profile.profilePic = request.FILES['profilePic']
+            except:
+                print('there are no files')
 
             profile.save()
             registered = True
@@ -61,17 +63,17 @@ def log_in(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                # state = "Logged in"
+
                 return redirect('/home/')
     return render(request, 'login.html', context_instance=RequestContext(request))
             # else:
             #     state = "Not active"
+
+
 @login_required(login_url='/login')
 def user_logout(request):
-    # Since we know the user is logged in, we can now just log them out.
     logout(request)
 
-    # Take the user back to the homepage.
     return redirect('/login/')
 
 def home(request):
