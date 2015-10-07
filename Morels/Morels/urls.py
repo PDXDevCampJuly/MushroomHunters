@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from Game import views
+from Player import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'Game.views.signup', name='signup'),
-    url(r'^login/', 'Game.views.log_in', name='login'),
-    url(r'^home/', 'Game.views.home', name='home'),
-    url(r'^logout/$', 'Game.views.user_logout', name='logout')
+    url(r'^$', 'Player.views.signup', name='signup'),
+    url(r'^login/', 'Player.views.log_in', name='login'),
+    url(r'^home/', 'Player.views.home', name='home'),
+    url(r'^logout/$', 'Player.views.user_logout', name='logout')
 ]
 
 
-def custom_login(request):
-    if request.user.is_authenticated():
-        return redirect('/home/')
-    else:
-        return login(request)
+# def custom_login(request):
+#     if request.user.is_authenticated():
+#         return redirect('/home/')
+#     else:
+#         return login(request)

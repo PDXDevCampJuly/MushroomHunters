@@ -17,7 +17,7 @@ class Player(models.Model):
     score = models.IntegerField()
 
     userHand = models.ManyToManyField('Game.Card')
-    userPlayers = models.ForeignKey(MyUser)
+    userPlayers = models.ForeignKey(MyUser, default=None)
 
     def __str__(self):
         return self.score

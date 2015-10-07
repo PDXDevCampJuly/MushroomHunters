@@ -5,6 +5,7 @@
     "fields": {
       "cardValue": 1,
       "stickValue": 1,
+      "picture": "../../Static/honey",
       "type": "Honey Fungus"
     }
   },
@@ -14,6 +15,7 @@
     "fields": {
       "cardValue": 2,
       "stickValue": 2,
+      "picture": "../../Static/shiitake",
       "type": "Shiitake"
     }
   },
@@ -23,6 +25,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 3,
+      "picture": "../../Static/porcini",
       "type": "Porcini"
     }
   },
@@ -32,6 +35,7 @@
     "fields": {
       "cardValue": 1,
       "stickValue": 2,
+      "picture": "../../Static/tree",
       "type": "Tree Ear"
     }
   },
@@ -41,6 +45,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 2,
+      "picture": "../../Static/fairy",
       "type": "Fairy Ring"
     }
   },
@@ -50,6 +55,7 @@
     "fields": {
       "cardValue": 4,
       "stickValue": 2,
+      "picture": "../../Static/chanterelle",
       "type": "Chanterelle"
     }
   },
@@ -59,6 +65,7 @@
     "fields": {
       "cardValue": 2,
       "stickValue": 1,
+      "picture": "../../Static/lawyer",
       "type": "Lawyer's Wig"
     }
   },
@@ -69,6 +76,7 @@
     "fields": {
       "cardValue": 6,
       "stickValue": 4,
+      "picture": "../../Static/morel",
       "type": "Morel"
       }
     },
@@ -78,6 +86,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 1,
+      "picture": "../../Static/hen",
       "type": "Hen of the woods"
     }
   },
@@ -87,6 +96,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
+      "picture": "../../Static/destroying",
       "type": "Destroying Angel"
     }
   },
@@ -96,6 +106,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
+      "picture": "../../Static/moon",
       "type": "Moon"
     }
   },
@@ -105,6 +116,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
+      "picture": "../../Static/basket",
       "type": "Basket"
     }
   },
@@ -114,6 +126,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
+      "picture": "../../Static/pan",
       "type": "Pan"
     }
   },
@@ -123,6 +136,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
+      "picture": "../../Static/butterr",
       "type": "Butter"
     }
   },
@@ -132,6 +146,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
+      "picture": "../../Static/cider",
       "type": "Cider"
     }
   }
