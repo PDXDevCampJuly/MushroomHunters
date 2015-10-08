@@ -4,7 +4,9 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.views import login
+from django.contrib.auth.models import User
 
+from .models import MyUser
 # Create your views here.
 from Player.forms.forms import UserForm, UserProfileForm
 
@@ -77,7 +79,13 @@ def user_logout(request):
     return redirect('/login/')
 
 def home(request):
+
     if request.user.is_authenticated():
         return render(request, 'home.html')
     else:
         return redirect('/')
+
+def profile(request):
+    players = MyUser.objects.all()
+
+    return render(request, 'profile.html', {'players': players})

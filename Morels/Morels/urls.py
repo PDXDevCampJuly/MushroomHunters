@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^$', 'Player.views.signup', name='signup'),
     url(r'^login/', 'Player.views.log_in', name='login'),
     url(r'^home/', 'Player.views.home', name='home'),
-    url(r'^logout/$', 'Player.views.user_logout', name='logout')
+    url(r'^logout/$', 'Player.views.user_logout', name='logout'),
+    url(r'^profile/', 'Player.views.profile', name='profile'),
+    url(r'^game/', 'Game.views.game', name='game')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

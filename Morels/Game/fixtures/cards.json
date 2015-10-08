@@ -5,7 +5,7 @@
     "fields": {
       "cardValue": 1,
       "stickValue": 1,
-      "picture": "honey",
+      "picture": "static/honey",
       "type": "Honey Fungus"
     }
   },
@@ -15,7 +15,7 @@
     "fields": {
       "cardValue": 2,
       "stickValue": 2,
-      "picture": "shiitake",
+      "picture": "static/shiitake",
       "type": "Shiitake"
     }
   },
@@ -25,7 +25,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 3,
-      "picture": "porcini",
+      "picture": "static/porcini",
       "type": "Porcini"
     }
   },
@@ -35,7 +35,7 @@
     "fields": {
       "cardValue": 1,
       "stickValue": 2,
-      "picture": "tree",
+      "picture": "static/tree",
       "type": "Tree Ear"
     }
   },
@@ -45,7 +45,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 2,
-      "picture": "fairy",
+      "picture": "static/fairy",
       "type": "Fairy Ring"
     }
   },
@@ -55,7 +55,7 @@
     "fields": {
       "cardValue": 4,
       "stickValue": 2,
-      "picture": "chanterelle",
+      "picture": "static/chanterelle",
       "type": "Chanterelle"
     }
   },
@@ -65,7 +65,7 @@
     "fields": {
       "cardValue": 2,
       "stickValue": 1,
-      "picture": "lawyer",
+      "picture": "static/lawyer",
       "type": "Lawyer's Wig"
     }
   },
@@ -76,7 +76,7 @@
     "fields": {
       "cardValue": 6,
       "stickValue": 4,
-      "picture": "morel.png",
+      "picture": "static/morel.png",
       "type": "Morel"
       }
     },
@@ -86,7 +86,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 1,
-      "picture": "hen.png",
+      "picture": "static/hen.png",
       "type": "Hen of the woods"
     }
   },
@@ -96,7 +96,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "destroying.png",
+      "picture": "static/destroying.png",
       "type": "Destroying Angel"
     }
   },
@@ -106,7 +106,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "moon.png",
+      "picture": "static/moon.png",
       "type": "Moon"
     }
   },
@@ -116,7 +116,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "basket.png",
+      "picture": "static/basket.png",
       "type": "Basket"
     }
   },
@@ -126,7 +126,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "pan.png",
+      "picture": "static/pan.png",
       "type": "Pan"
     }
   },
@@ -136,7 +136,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "butterr.png",
+      "picture": "static/butterr.png",
       "type": "Butter"
     }
   },
@@ -146,7 +146,7 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "cider.png",
+      "picture": "static/cider.png",
       "type": "Cider"
     }
   }
