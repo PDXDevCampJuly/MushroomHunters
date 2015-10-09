@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^home/', 'Player.views.home', name='home'),
     url(r'^logout/$', 'Player.views.user_logout', name='logout'),
     url(r'^profile/', 'Player.views.profile', name='profile'),
-    url(r'^game/', 'Game.views.game', name='game')
+    url(r'^game/', 'Game.views.make_starting_decks', name='make_starting_deck')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

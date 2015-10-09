@@ -9,9 +9,8 @@ def test(request):
     card = Card.objects.get()
     return render(request, 'game.html')
 
-    # print( Card )
-
-def game(request):
+# def make_deck(request):
+def make_starting_decks(request):
     deck = []
     times = [10, 5, 4, 8, 5, 4, 6, 4, 3, 11, 5, 3, 8, 5, 3]
 
@@ -49,6 +48,7 @@ def game(request):
         Basket,
         Cider,
     ]
+
     i = 0
     for x in lis:
         temp = [x] * times[i]
@@ -56,17 +56,23 @@ def game(request):
         for y in temp:
             deck.append(y)
 
-
-
     random.shuffle(deck)
-    print(deck)
-    return render(request, 'game.html')
 
-#
-#     i=0
-#
-#     while i < card:
-#         if card[i].type == 'Honey Fungus':
-#             deck.append(card[i] * 10)
-#         if card[i].type == 'Shiitake':
-#             deck.append(card[i] * 5)
+    newdeck = deck[:8]
+
+
+    night = Card.objects.filter(type__in=[
+        'Honey Fungus',
+        'Shiitake',
+        'Porcini',
+        'Tree Ear',
+        'Hen of the woods',
+        'Chanterelle',
+        "Lawyer's Wig",
+        'Fairy Ring',
+        'Morel',])
+
+    for i in night:
+        i.cardValue *= 2
+
+    return render(request, 'game.html', {'night': night, 'newdeck': newdeck})

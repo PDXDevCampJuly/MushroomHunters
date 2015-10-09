@@ -5,7 +5,7 @@
     "fields": {
       "cardValue": 1,
       "stickValue": 1,
-      "picture": "static/honey",
+      "picture": "static/honey.png",
       "type": "Honey Fungus"
     }
   },
@@ -15,7 +15,7 @@
     "fields": {
       "cardValue": 2,
       "stickValue": 2,
-      "picture": "static/shiitake",
+      "picture": "static/shiitake.png",
       "type": "Shiitake"
     }
   },
@@ -25,7 +25,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 3,
-      "picture": "static/porcini",
+      "picture": "static/porcini.png",
       "type": "Porcini"
     }
   },
@@ -35,7 +35,7 @@
     "fields": {
       "cardValue": 1,
       "stickValue": 2,
-      "picture": "static/tree",
+      "picture": "static/tree.png",
       "type": "Tree Ear"
     }
   },
@@ -45,7 +45,7 @@
     "fields": {
       "cardValue": 3,
       "stickValue": 2,
-      "picture": "static/fairy",
+      "picture": "static/fairy.png",
       "type": "Fairy Ring"
     }
   },
@@ -55,7 +55,7 @@
     "fields": {
       "cardValue": 4,
       "stickValue": 2,
-      "picture": "static/chanterelle",
+      "picture": "static/chanterelle.png",
       "type": "Chanterelle"
     }
   },
@@ -65,7 +65,7 @@
     "fields": {
       "cardValue": 2,
       "stickValue": 1,
-      "picture": "static/lawyer",
+      "picture": "static/lawyer.png",
       "type": "Lawyer's Wig"
     }
   },
