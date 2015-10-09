@@ -1,15 +1,14 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title></title>-->
-    {%load staticfiles%}
-<!--</head>-->
-<!--<body>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Morels</title>
+</head>
+{%load staticfiles%}
+<body style="display: flex">
     <p>NIGHT DECK</p>
     <ul>
         {% for cards in night %}
-        <!--<p>{{ cards.picture }}</p>-->
         <li>
             <img src="/{{ cards.picture }}">
         </li>
@@ -23,5 +22,5 @@
         </li>
         {%endfor%}
     </ul>
-<!--</body>-->
-<!--</html>-->
+</body>
+</html>
