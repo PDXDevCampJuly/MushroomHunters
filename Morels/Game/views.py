@@ -58,7 +58,7 @@ def make_starting_decks(request):
 
     random.shuffle(deck)
 
-    newdeck = deck[72:]
+    newdeck = deck[76:]
 
 
     night = Card.objects.filter(type__in=[
