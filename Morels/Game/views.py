@@ -11,6 +11,7 @@ def test(request):
 
 # def make_deck(request):
 def make_starting_decks(request):
+    hand = []
     deck = []
     times = [10, 5, 4, 8, 5, 4, 6, 4, 3, 11, 5, 3, 8, 5, 3]
 
@@ -29,7 +30,6 @@ def make_starting_decks(request):
     Moon = Card.objects.get(type='Moon')
     Basket = Card.objects.get(type='Basket')
     Cider = Card.objects.get(type='Cider')
-
 
     lis = [
         Honey_Fungus,
@@ -58,7 +58,7 @@ def make_starting_decks(request):
 
     random.shuffle(deck)
 
-    newdeck = deck[:8]
+    newdeck = deck[72:]
 
 
     night = Card.objects.filter(type__in=[
@@ -74,5 +74,23 @@ def make_starting_decks(request):
 
     for i in night:
         i.cardValue *= 2
+        hand = []
 
-    return render(request, 'game.html', {'night': night, 'newdeck': newdeck})
+    make_hand(deck, hand)
+
+    return render(request, 'game.html', {'hand': hand, 'newdeck': newdeck, 'night': night,})
+
+def make_hand(deck, hand):
+    i = 0
+    # print(deck)
+    while i < 4:
+        hand.append(deck[i +1])
+        deck.remove(deck[i +1])
+        i += 1
+        # print(hand)
+        # print("blopp")
+        # print(deck)
+
+    # print(hand)
+    # print("blopp")
+    # print(deck)

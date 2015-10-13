@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,21 +7,34 @@
 </head>
 {%load staticfiles%}
 <body style="display: flex">
-    <p>NIGHT DECK</p>
-    <ul>
+    <p>night deck</p>
+    <ol style=" list-style-type:none;">
         {% for cards in night %}
         <li>
-            <img src="/{{ cards.picture }}">
+            <img class="nightDeck" src="/{{ cards.picture }}">
         </li>
         {%endfor%}
-    </ul>
-    <p>NEXT DECK(newdeck as in eight of a shuffled deck)</p>
-    <ul>
+    </ol>
+
+    <p>deck w/ forest</p>
+    <ol style=" list-style-type:none;">
         {% for i in newdeck %}
         <li>
-            <img src="/{{ i.picture }}">
+            <img class="mainDeck" src="/{{ i.picture }}">
         </li>
         {%endfor%}
-    </ul>
+    </ol>
+
+    <p>hand</p>
+    <ol class='example' style="list-style-type:none;">
+        {% for i in hand %}
+        <li>
+            <img class="hand" src="/{{ i.picture }}">
+        </li>
+        {%endfor%}
+    </ol>
 </body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-sortable.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/gamejs.js' %}"></script>
 </html>
