@@ -2,14 +2,12 @@ from django.shortcuts import render
 from .models import *
 from random import choice
 from Game.models import Card
-import sys
 import random
 
 def test(request):
     card = Card.objects.get()
     return render(request, 'game.html')
 
-# def make_deck(request):
 def make_starting_decks(request):
     hand = []
     deck = []

@@ -4,26 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Morels</title>
+    <style>
+        .deck {
+            display:flex;
+        }
+        ol {
+            list-style-type:none;
+        }
+        img {
+            width: 163px;
+        }
+    </style>
 </head>
+
 {%load staticfiles%}
-<body style="display: flex">
+
+<body>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/logout/">Logout</a>
+        <a href="#">Leader Board</a>
+        <a href="#">V</a>
+
+    </nav>
+
     <p>deck w/ forest</p>
-    <ol style=" list-style-type:none;">
+
+    <ol class="deck">
+
         {% for i in newdeck %}
         <li>
             <img class="mainDeck" src="/{{ i.picture }}">
         </li>
         {%endfor%}
+
     </ol>
 
     <p>hand</p>
-    <ol class='example' style="list-style-type:none;">
+
+    <ol class='example'>
+
         {% for i in hand %}
         <li>
             <img class="hand" src="/{{ i.picture }}">
         </li>
         {%endfor%}
+
     </ol>
+
 </body>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'js/jquery-sortable.js' %}"></script>
