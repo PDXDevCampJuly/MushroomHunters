@@ -7,15 +7,6 @@
 </head>
 {%load staticfiles%}
 <body style="display: flex">
-    <p>night deck</p>
-    <ol style=" list-style-type:none;">
-        {% for cards in night %}
-        <li>
-            <img class="nightDeck" src="/{{ cards.picture }}">
-        </li>
-        {%endfor%}
-    </ol>
-
     <p>deck w/ forest</p>
     <ol style=" list-style-type:none;">
         {% for i in newdeck %}

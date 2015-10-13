@@ -59,7 +59,21 @@ def make_starting_decks(request):
     random.shuffle(deck)
 
     newdeck = deck[76:]
+    make_night()
 
+    make_hand(deck, hand)
+
+    return render(request, 'game.html', {'hand': hand, 'newdeck': newdeck})
+
+def make_hand(deck, hand):
+
+    i = 0
+    while i < 4:
+        hand.append(deck[i +1])
+        deck.remove(deck[i +1])
+        i += 1
+
+def make_night():
 
     night = Card.objects.filter(type__in=[
         'Honey Fungus',
@@ -74,23 +88,5 @@ def make_starting_decks(request):
 
     for i in night:
         i.cardValue *= 2
-        hand = []
 
-    make_hand(deck, hand)
-
-    return render(request, 'game.html', {'hand': hand, 'newdeck': newdeck, 'night': night,})
-
-def make_hand(deck, hand):
-    i = 0
-    # print(deck)
-    while i < 4:
-        hand.append(deck[i +1])
-        deck.remove(deck[i +1])
-        i += 1
-        # print(hand)
-        # print("blopp")
-        # print(deck)
-
-    # print(hand)
-    # print("blopp")
-    # print(deck)
+    print(night)
