@@ -16,11 +16,15 @@ class Card(models.Model):
 
 class Deck(models.Model):
     deckCard = models.ManyToManyField(Card, related_name='+', default=None)
-    forestCard = models.ManyToManyField(Card, related_name='+', default=None)
-    nightDeckCard = models.ManyToManyField(Card, related_name='+', default=None)
+
+class Decay(models.Model):
     decayDeckCard = models.ManyToManyField(Card, related_name='+', default=None)
 
+class Forest(models.Model):
+    forestCard = models.ManyToManyField(Card, related_name='+', default=None)
 
+class Night(models.Model):
+    nightDeckCard = models.ManyToManyField(Card, related_name='+', default=None)
 
 class FryingPan(models.Model):
     card_id = models.ForeignKey(Card)

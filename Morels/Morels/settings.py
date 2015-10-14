@@ -76,6 +76,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Morels.wsgi.application'
 
 
+FIXTURES_DIRS = (
+    '../Game/fixtures/',
+)
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 

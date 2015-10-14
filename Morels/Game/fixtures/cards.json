@@ -1,7 +1,6 @@
 [
   {
     "model": "Game.Card",
-    "pk": 1,
     "fields": {
       "cardValue": 1,
       "stickValue": 1,
@@ -11,7 +10,87 @@
   },
   {
     "model": "Game.Card",
-    "pk": 2,
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 2,
       "stickValue": 2,
@@ -21,7 +100,42 @@
   },
   {
     "model": "Game.Card",
-    "pk": 3,
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 2,
+      "picture": "static/shiitake.png",
+      "type": "Shiitake"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 2,
+      "picture": "static/shiitake.png",
+      "type": "Shiitake"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 2,
+      "picture": "static/shiitake.png",
+      "type": "Shiitake"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 2,
+      "picture": "static/shiitake.png",
+      "type": "Shiitake"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 3,
       "stickValue": 3,
@@ -31,7 +145,33 @@
   },
   {
     "model": "Game.Card",
-    "pk": 4,
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 3,
+      "picture": "static/porcini.png",
+      "type": "Porcini"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 3,
+      "picture": "static/porcini.png",
+      "type": "Porcini"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 3,
+      "picture": "static/porcini.png",
+      "type": "Porcini"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 1,
       "stickValue": 2,
@@ -41,7 +181,69 @@
   },
   {
     "model": "Game.Card",
-    "pk": 5,
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 3,
       "stickValue": 2,
@@ -51,7 +253,33 @@
   },
   {
     "model": "Game.Card",
-    "pk": 6,
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 2,
+      "picture": "static/fairy.png",
+      "type": "Fairy Ring"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 2,
+      "picture": "static/fairy.png",
+      "type": "Fairy Ring"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 2,
+      "picture": "static/fairy.png",
+      "type": "Fairy Ring"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 4,
       "stickValue": 2,
@@ -61,7 +289,78 @@
   },
   {
     "model": "Game.Card",
-    "pk": 7,
+    "fields": {
+      "cardValue": 4,
+      "stickValue": 2,
+      "picture": "static/chanterelle.png",
+      "type": "Chanterelle"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 4,
+      "stickValue": 2,
+      "picture": "static/chanterelle.png",
+      "type": "Chanterelle"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 4,
+      "stickValue": 2,
+      "picture": "static/chanterelle.png",
+      "type": "Chanterelle"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 1,
+      "picture": "static/lawyer.png",
+      "type": "Lawyer's Wig"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 1,
+      "picture": "static/lawyer.png",
+      "type": "Lawyer's Wig"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 1,
+      "picture": "static/lawyer.png",
+      "type": "Lawyer's Wig"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 1,
+      "picture": "static/lawyer.png",
+      "type": "Lawyer's Wig"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 2,
+      "stickValue": 1,
+      "picture": "static/lawyer.png",
+      "type": "Lawyer's Wig"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 2,
       "stickValue": 1,
@@ -70,19 +369,36 @@
     }
   },
 
-    {
-    "model": "Game.Card",
-    "pk": 8,
-    "fields": {
-      "cardValue": 6,
-      "stickValue": 4,
-      "picture": "static/morel.png",
-      "type": "Morel"
-      }
-    },
+  {
+  "model": "Game.Card",
+  "fields": {
+    "cardValue": 6,
+    "stickValue": 4,
+    "picture": "static/morel.png",
+    "type": "Morel"
+    }
+  },
+  {
+  "model": "Game.Card",
+  "fields": {
+    "cardValue": 6,
+    "stickValue": 4,
+    "picture": "static/morel.png",
+    "type": "Morel"
+    }
+  },
+  {
+  "model": "Game.Card",
+  "fields": {
+    "cardValue": 6,
+    "stickValue": 4,
+    "picture": "static/morel.png",
+    "type": "Morel"
+    }
+  },
+
   {
     "model": "Game.Card",
-    "pk": 9,
     "fields": {
       "cardValue": 3,
       "stickValue": 1,
@@ -92,7 +408,42 @@
   },
   {
     "model": "Game.Card",
-    "pk": 10,
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 1,
+      "picture": "static/hen.png",
+      "type": "Hen of the woods"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 1,
+      "picture": "static/hen.png",
+      "type": "Hen of the woods"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 1,
+      "picture": "static/hen.png",
+      "type": "Hen of the woods"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 3,
+      "stickValue": 1,
+      "picture": "static/hen.png",
+      "type": "Hen of the woods"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
@@ -102,7 +453,42 @@
   },
   {
     "model": "Game.Card",
-    "pk": 11,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/destroying.png",
+      "type": "Destroying Angel"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/destroying.png",
+      "type": "Destroying Angel"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/destroying.png",
+      "type": "Destroying Angel"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/destroying.png",
+      "type": "Destroying Angel"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
@@ -112,7 +498,69 @@
   },
   {
     "model": "Game.Card",
-    "pk": 12,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/moon.png",
+      "type": "Moon"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
@@ -122,7 +570,42 @@
   },
   {
     "model": "Game.Card",
-    "pk": 13,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/basket.png",
+      "type": "Basket"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/basket.png",
+      "type": "Basket"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/basket.png",
+      "type": "Basket"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/basket.png",
+      "type": "Basket"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
@@ -132,7 +615,96 @@
   },
   {
     "model": "Game.Card",
-    "pk": 14,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/pan.png",
+      "type": "Pan"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
@@ -142,7 +714,42 @@
   },
   {
     "model": "Game.Card",
-    "pk": 15,
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/butterr.png",
+      "type": "Butter"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/butterr.png",
+      "type": "Butter"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/cider.png",
+      "type": "Cider"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 0,
+      "stickValue": 0,
+      "picture": "static/cider.png",
+      "type": "Cider"
+    }
+  },
+  {
+    "model": "Game.Card",
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
