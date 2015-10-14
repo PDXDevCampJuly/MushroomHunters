@@ -14,6 +14,13 @@ class Card(models.Model):
     def __str__(self):
         return self.type
 
+class Deck(models.Model):
+    deckCard = models.ManyToManyField(Card, related_name='+', default=None)
+    forestCard = models.ManyToManyField(Card, related_name='+', default=None)
+    nightDeckCard = models.ManyToManyField(Card, related_name='+', default=None)
+    decayDeckCard = models.ManyToManyField(Card, related_name='+', default=None)
+
+
 
 class FryingPan(models.Model):
     card_id = models.ForeignKey(Card)
@@ -23,15 +30,15 @@ class FryingPan(models.Model):
 
 
 class Game(models.Model):
-    winner = models.ForeignKey(User, default=None)
+    winner = models.ForeignKey(User, default=None, blank=True, null=True)
     date = models.DateTimeField('')
     player_1 = models.ForeignKey(User, related_name='+')
     player_2 = models.ForeignKey(User, related_name='+')
 
-    deckCard = models.ForeignKey(Card, related_name='+', default=None)
-    forestCard = models.ForeignKey(Card, related_name='+', default=None)
-    nightDeckCard = models.ForeignKey(Card, related_name='+', default=None)
-    decayDeckCard = models.ForeignKey(Card, related_name='+', default=None)
+    deck_id = models.ForeignKey(Deck, related_name='+', default=None)
+    # forest_id = models.ForeignKey(Deck, related_name='+', default=None)
+    # Night_id = models.ForeignKey(Deck, related_name='+', default=None)
+    # decay_id =models.ForeignKey(Deck, related_name='+', default=None)
 
 
 class PlayingCard(models.Model):

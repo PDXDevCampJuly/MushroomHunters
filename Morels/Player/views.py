@@ -52,7 +52,6 @@ def signup(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 def log_in(request):
-    request.session.set_test_cookie()
     username = password = ""
 
     if request.user.is_authenticated():
@@ -80,8 +79,6 @@ def user_logout(request):
     return redirect('/login/')
 
 def home(request):
-    if request.session.test_cookie_worked():
-        print(">>>> TEST COOKIE WORKED!")
     # request.session.delete_test_cookie()
 
     if request.user.is_authenticated():

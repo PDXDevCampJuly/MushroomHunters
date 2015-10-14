@@ -57,6 +57,7 @@ def make_starting_decks(request):
     random.shuffle(deck)
 
     newdeck = deck[76:]
+
     make_night()
 
     make_hand(deck, hand)
