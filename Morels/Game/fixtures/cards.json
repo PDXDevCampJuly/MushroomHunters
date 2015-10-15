@@ -11,10 +11,10 @@
   {
     "model": "Game.Card",
     "fields": {
-      "cardValue": 1,
-      "stickValue": 1,
+      "cardValue": 2,
+      "stickValue": 2,
       "picture": "static/honey.png",
-      "type": "Honey Fungus"
+      "type": "Night Honey Fungus"
     }
   },
   {
@@ -87,6 +87,24 @@
       "stickValue": 1,
       "picture": "static/honey.png",
       "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 1,
+      "picture": "static/honey.png",
+      "type": "Honey Fungus"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 4,
+      "stickValue": 4,
+      "picture": "static/shiitake.png",
+      "type": "Night Shiitake"
     }
   },
   {
@@ -132,6 +150,15 @@
       "stickValue": 2,
       "picture": "static/shiitake.png",
       "type": "Shiitake"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 6,
+      "stickValue": 6,
+      "picture": "static/porcini.png",
+      "type": "Night Porcini"
     }
   },
   {
@@ -173,10 +200,10 @@
   {
     "model": "Game.Card",
     "fields": {
-      "cardValue": 1,
-      "stickValue": 2,
+      "cardValue": 2,
+      "stickValue": 4,
       "picture": "static/tree.png",
-      "type": "Tree Ear"
+      "type": "Night Tree Ear"
     }
   },
   {
@@ -240,6 +267,24 @@
       "stickValue": 2,
       "picture": "static/tree.png",
       "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 1,
+      "stickValue": 2,
+      "picture": "static/tree.png",
+      "type": "Tree Ear"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 6,
+      "stickValue": 4,
+      "picture": "static/fairy.png",
+      "type": "Night Fairy Ring"
     }
   },
   {
@@ -281,10 +326,10 @@
   {
     "model": "Game.Card",
     "fields": {
-      "cardValue": 4,
-      "stickValue": 2,
+      "cardValue": 8,
+      "stickValue": 4,
       "picture": "static/chanterelle.png",
-      "type": "Chanterelle"
+      "type": "Night Chanterelle"
     }
   },
   {
@@ -312,6 +357,24 @@
       "stickValue": 2,
       "picture": "static/chanterelle.png",
       "type": "Chanterelle"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 4,
+      "stickValue": 2,
+      "picture": "static/chanterelle.png",
+      "type": "Chanterelle"
+    }
+  },
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 4,
+      "stickValue": 2,
+      "picture": "static/lawyer.png",
+      "type": "Night Lawyer's Wig"
     }
   },
   {
@@ -396,7 +459,15 @@
     "type": "Morel"
     }
   },
-
+  {
+    "model": "Game.Card",
+    "fields": {
+      "cardValue": 6,
+      "stickValue": 2,
+      "picture": "static/hen.png",
+      "type": "Night Hen of the woods"
+    }
+  },
   {
     "model": "Game.Card",
     "fields": {

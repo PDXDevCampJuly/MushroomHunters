@@ -22,6 +22,15 @@ class Player(models.Model):
     def __str__(self):
         return self.score
 
+class Invite(models.Model):
+    invite_sender = models.ForeignKey(Player, related_name='+')
+    invite_resever = models.ForeignKey(Player, related_name='+')
+    time_sent = models.DateTimeField('')
+    status_accepted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.status_accepted
+
 class Insult(models.Model):
     insults = models.CharField(max_length=100)
 

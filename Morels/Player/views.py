@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.views import login
 from django.contrib.auth.models import User
+from Game.models import Game
 
 from .models import MyUser
 # Create your views here.
@@ -90,3 +91,16 @@ def profile(request):
     players = MyUser.objects.all()
 
     return render(request, 'profile.html', {'players': players})
+
+
+
+
+
+
+
+
+
+
+
+
+
