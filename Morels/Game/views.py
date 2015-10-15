@@ -41,7 +41,7 @@ def make_starting_decks(request):
         night.save()
         print(night)
 
-    return render(request, 'game.html')
+    return render(request, 'game.html', {'decay': decay, 'forest': forest,})
 
 
 def invite(request):
@@ -57,8 +57,8 @@ def new_game(request):
         user2 = User.objects.all().filter(username=player2)
         user1 = request.user
         create_game(user1, user2)
-        
-    return  render(request, 'game.html')
+
+    return render(request, 'game.html')
 
 
 def create_game(user1, user2):

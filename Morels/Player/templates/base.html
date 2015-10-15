@@ -2,24 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+
 </head>
 <body>
-    {% if registered %}
+    {% if user.is_authenticated %}
     <nav>
         <a href="/">Home</a>
         <a href="/logout/">Logout</a>
         <a href="#">Leader Board</a>
+        <a href="/profile/">Profile</a>
         <a href="#">V</a>
     </nav>
-    {% else %}
-
     {% endif %}
+
+    {% block main %}
+    {% endblock %}
 
     <footer>
         <p>Morels blah blah Morels isn't mine</p>
         <p>This is just a fun project BLLAAHHHH</p>
     </footer>
+
+    {% block script_tags %}
+    {% endblock %}
 
 </body>
 </html>

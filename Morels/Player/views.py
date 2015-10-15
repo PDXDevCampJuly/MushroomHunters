@@ -88,10 +88,9 @@ def home(request):
         return redirect('/')
 
 def profile(request):
-    players = MyUser.objects.all()
+    player = request.user
 
-    return render(request, 'profile.html', {'players': players})
-
+    return render(request, 'profile.html', {'player': player})
 
 
 

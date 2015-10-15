@@ -1,41 +1,14 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Morels</title>
-    <style>
-        .deck {
-            display:flex;
-        }
-        ol {
-            list-style-type:none;
-        }
-        img {
-            width: 163px;
-        }
-    </style>
-</head>
-
-{%load staticfiles%}
-
-<body>
-
-    <nav>
-        <a href="/">Home</a>
-        <a href="/logout/">Logout</a>
-        <a href="#">Leader Board</a>
-        <a href="#">V</a>
-
-    </nav>
+{% extends 'base.html' %}
+{% block main %}
+    {% load staticfiles %}
 
     <p>deck w/ forest</p>
 
     <ol class="deck simple_with_no_drop">
 
-        {% for i in newdeck %}
+        {% for i in decay %}
         <li>
-            <img class="mainDeck" src="/{{ i.picture }}">
+            <img class="mainDeck" src="/{{ i.decay }}">
         </li>
         {%endfor%}
 
@@ -52,9 +25,10 @@
         {%endfor%}
 
     </ol>
+{% endblock %}
 
-</body>
+{% block script_tags %}
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'js/jquery-sortable.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/gamejs.js' %}"></script>
-</html>
+{% endblock %}
