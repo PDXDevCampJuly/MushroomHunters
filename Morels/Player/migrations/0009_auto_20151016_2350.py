@@ -2,19 +2,18 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Game', '0006_auto_20151007_2226'),
+        ('Player', '0008_auto_20151016_2349'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='game',
-            name='winner',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, default=None, blank=True),
+            model_name='player',
+            name='userPlayer',
+            field=models.ForeignKey(to='Player.MyUser', blank=True, default=''),
         ),
     ]

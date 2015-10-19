@@ -2,10 +2,10 @@
 {% block main %}
     <form action="/newgame/" method="post">
         {% csrf_token %}
-    <select name="player2">
-        {% for person in people %}
-            <option value="{{ person.username }}">{{ person.username }}</option>
-        {% endfor %}
+        <select name="player2">
+            {% for person in people %}
+                <option value="{{ person.username }}">{{ person.username }}</option>
+            {% endfor %}
         </select>
         <input type="submit" value="submit">
     </form>

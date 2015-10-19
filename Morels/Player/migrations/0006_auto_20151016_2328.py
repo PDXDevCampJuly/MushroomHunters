@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Game', '0018_auto_20151015_1729'),
+        ('Player', '0005_auto_20151016_2243'),
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='game',
-            old_name='Night_id',
-            new_name='night_id',
+        migrations.AlterField(
+            model_name='player',
+            name='userHand',
+            field=models.ManyToManyField(to='Player.Card', blank=True),
         ),
     ]

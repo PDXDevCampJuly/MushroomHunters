@@ -2,29 +2,7 @@
 {% block main %}
     {% load staticfiles %}
 
-    <p>deck w/ forest</p>
 
-    <ol class="deck simple_with_no_drop">
-
-        {% for i in decay %}
-        <li>
-            <img class="mainDeck" src="/{{ i.decay }}">
-        </li>
-        {%endfor%}
-
-    </ol>
-
-    <p>hand</p>
-
-    <ol class='example simple_with_drop'>
-
-        {% for i in hand %}
-        <li>
-            <img class="hand" src="/{{ i.picture }}">
-        </li>
-        {%endfor%}
-
-    </ol>
 {% endblock %}
 
 {% block script_tags %}

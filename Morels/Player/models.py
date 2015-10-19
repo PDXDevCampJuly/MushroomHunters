@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from Game import models as game_models
 # Create your models here.
+
 
 class MyUser(models.Model):
     # location = models.TextField(max_length=500)
@@ -13,29 +15,43 @@ class MyUser(models.Model):
     def __str__(self):
         return self.user.username
 
-class Player(models.Model):
-    score = models.IntegerField()
 
-    userHand = models.ManyToManyField('Game.Card')
-    userPlayers = models.ForeignKey(MyUser, default=None)
+class Card(models.Model):
+    cardValue = models.IntegerField()
+    stickValue = models.IntegerField()
+    picture = models.ImageField(upload_to=None, blank=False, default="../../static")
+    type = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.score
+        return self.type
+
+
+class Player(models.Model):
+    score = models.IntegerField(default=0)
+
+    userHand = models.ManyToManyField(Card, blank=True)
+    userPlayer = models.ForeignKey(MyUser)
+
+    def __str__(self):
+        return self.userPlayer.user.username
+
 
 class Invite(models.Model):
-    invite_sender = models.ForeignKey(Player, related_name='+')
-    invite_resever = models.ForeignKey(Player, related_name='+')
+    invite_sender = models.ForeignKey(MyUser, related_name='sender')
+    invite_receiver = models.ForeignKey(MyUser, related_name='receiver')
     time_sent = models.DateTimeField('')
     status_accepted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.status_accepted
 
+
 class Insult(models.Model):
     insults = models.CharField(max_length=100)
 
     def __str__(self):
         return self.insults
+
 
 class Bot(models.Model):
     name = models.CharField(max_length=50)
@@ -45,6 +61,7 @@ class Bot(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class LeaderBoard(models.Model):
     user_id = models.ForeignKey(User, default='')

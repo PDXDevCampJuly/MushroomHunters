@@ -4,12 +4,15 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.views import login
+from django.db.models import Q
 from django.contrib.auth.models import User
 from Game.models import Game
+from Player.models import Player
 
 from .models import MyUser
 # Create your views here.
 from Player.forms.forms import UserForm, UserProfileForm
+
 
 def signup(request):
 
@@ -24,7 +27,7 @@ def signup(request):
         # print(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
-            print('formsorm is valid')
+            print('form is valid')
 
             user = user_form.save()
             user.set_password(user.password)
@@ -51,6 +54,7 @@ def signup(request):
     return render(request,
             'signup.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+
 
 def log_in(request):
     username = password = ""
@@ -79,6 +83,7 @@ def user_logout(request):
 
     return redirect('/login/')
 
+
 def home(request):
     # request.session.delete_test_cookie()
 
@@ -87,10 +92,17 @@ def home(request):
     else:
         return redirect('/')
 
-def profile(request):
-    player = request.user
 
-    return render(request, 'profile.html', {'player': player})
+def profile(request):
+    current_player = MyUser.objects.filter(user=request.user)
+    member = Player.objects.filter(userPlayer=current_player)
+    print(member)
+
+    current_games = Game.objects.filter(Q(player_1__in=member) | Q(player_2__in=member))
+
+    return render(request, 'profile.html', {'member': member, 'current_games': current_games})
+
+
 
 
 

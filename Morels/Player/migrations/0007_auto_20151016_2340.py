@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Player', '0004_auto_20151007_2200'),
+        ('Player', '0006_auto_20151016_2328'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='myuser',
-            name='profilePic',
-            field=models.ImageField(upload_to='', blank=True),
+            model_name='player',
+            name='userHand',
+            field=models.ManyToManyField(blank=True, null=True, to='Player.Card'),
         ),
     ]

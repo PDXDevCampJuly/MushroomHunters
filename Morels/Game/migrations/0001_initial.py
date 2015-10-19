@@ -2,52 +2,86 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('Player', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Card',
+            name='Decay',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
-                ('cardValue', models.IntegerField(max_length=6)),
-                ('stickValue', models.IntegerField(max_length=16)),
-                ('type', models.CharField(max_length=50)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('decayDeckCard', models.ManyToManyField(default=None, related_name='+', to='Player.Card')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Deck',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('deckCard', models.ManyToManyField(default=None, related_name='+', to='Player.Card')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Forest',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('forestCard', models.ManyToManyField(default=None, related_name='+', to='Player.Card')),
             ],
         ),
         migrations.CreateModel(
             name='FryingPan',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
-                ('card_id', models.ForeignKey(to='Game.Card')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('card_id', models.ForeignKey(to='Player.Card')),
             ],
         ),
         migrations.CreateModel(
             name='Game',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
-                ('date', models.DateTimeField(verbose_name='')),
-                ('decayDeckCard', models.ManyToManyField(related_name='+', to='Game.Card')),
-                ('deckCard', models.ManyToManyField(related_name='+', to='Game.Card')),
-                ('forestCard', models.ManyToManyField(related_name='+', to='Game.Card')),
-                ('nightDeckCard', models.ManyToManyField(related_name='+', to='Game.Card')),
-                ('player_1', models.ForeignKey(related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('player_2', models.ForeignKey(related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('winner', models.ForeignKey(default=None, to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('date', models.DateTimeField(editable=False)),
+                ('decay_id', models.ForeignKey(default=None, related_name='+', to='Game.Decay')),
+                ('deck_id', models.ForeignKey(default=None, related_name='+', to='Game.Deck')),
+                ('forest_id', models.ForeignKey(default=None, related_name='+', to='Game.Forest')),
             ],
         ),
         migrations.CreateModel(
-            name='Playing_Card',
+            name='Night',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
-                ('card_id', models.ForeignKey(to='Game.Card')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('nightDeckCard', models.ManyToManyField(default=None, related_name='+', to='Player.Card')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='PlayingCard',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('card_id', models.ForeignKey(to='Player.Card')),
                 ('fryingPan_id', models.ForeignKey(to='Game.FryingPan')),
             ],
+        ),
+        migrations.AddField(
+            model_name='game',
+            name='night_id',
+            field=models.ForeignKey(default=None, related_name='+', to='Game.Night'),
+        ),
+        migrations.AddField(
+            model_name='game',
+            name='player_1',
+            field=models.ForeignKey(to='Player.Player', related_name='+'),
+        ),
+        migrations.AddField(
+            model_name='game',
+            name='player_2',
+            field=models.ForeignKey(to='Player.Player', related_name='+'),
+        ),
+        migrations.AddField(
+            model_name='game',
+            name='winner',
+            field=models.ForeignKey(to='Player.MyUser', blank=True, default=None, null=True),
         ),
     ]
