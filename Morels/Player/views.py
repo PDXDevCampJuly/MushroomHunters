@@ -102,7 +102,11 @@ def profile(request):
 
     return render(request, 'profile.html', {'member': member, 'current_games': current_games})
 
+def leader_board(request):
+    users = MyUser.objects.filter()
 
+
+    return render(request, 'leaderboard.html')
 
 
 

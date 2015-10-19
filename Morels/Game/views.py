@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from .models import *
 from random import shuffle
-from random import choice
+# from random import choice
 from Game.models import Forest, Night, Deck, Decay
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from Player.models import Card, User, Player, MyUser
-import random
+from django.shortcuts import redirect
+# import random
 
 
-def make_starting_decks(request):
+def make_starting_decks(person, person1):
     cards = []
     forest = Forest()
     forest.save()
@@ -26,12 +27,20 @@ def make_starting_decks(request):
 
         if num < 8:
 
-            forest.forestCard.add(c.id)
+            forest.forestCard.add(c)
 
             forest.save()
 
             num += 1
 
+        if num < 11:
+            person.userHand.add(c)
+            person.save()
+            num +=1
+        if num > 11 and num < 16:
+            person1.userHand.add(c)
+            person1.save()
+            num +=1
         else:
             deck.deckCard.add(c)
             deck.save()
@@ -43,9 +52,6 @@ def make_starting_decks(request):
     for n in Card.objects.filter(type__startswith='Night'):
         night.nightDeckCard.add(n)
         night.save()
-        # print(night)
-
-    return render(request, 'game.html', {'decay': decay, 'forest': forest,})
 
 
 def invite(request):
@@ -60,31 +66,28 @@ def new_game(request):
     if request.method == 'POST':
         player2 = request.POST.get("player2")
 
-        user_object = User.objects.filter(username__exact=player2) #User object
-        print(user_object)
-        print('user_object')
+        user_object = User.objects.filter(username__exact=player2)
 
         real_user = MyUser.objects.get(user=user_object)
-        print(real_user)
-        print('real_user')
 
         person = Player(userPlayer=real_user)
         person.save()
 
         player1 = request.user
-        print(player1)
-        print('player1')
 
         real_user1 = MyUser.objects.get(user__exact=player1)
-        print(real_user1)
-        print('real_user1')
 
         person1 = Player(userPlayer=real_user1)
         person1.save()
 
+        make_starting_decks(person, person1)
+
         create_game(person, person1)
 
-    return render(request, 'game.html')
+        return redirect('/game/')
+
+    else:
+        return redirect('/invite/')
 
 
 def create_game(person, person1):
@@ -97,9 +100,17 @@ def create_game(person, person1):
     game.save()
 
 
+def game(request):
+    player_hand = request.user
 
-# if num < 11:
-#     player.userHand.add(c)
-#     player.save()
-#     print('Printing Hand')
-#     print(player)
+    user = MyUser.objects.get(user__exact=player_hand)
+
+    boop = Player.objects.filter(userPlayer=user)
+
+    blah = boop.all()[:1].get()
+
+    hand = blah.userHand.all()
+
+
+
+    return render(request, 'game.html', {'hand' : hand})

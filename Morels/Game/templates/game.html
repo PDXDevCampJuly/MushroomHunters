@@ -2,6 +2,13 @@
 {% block main %}
     {% load staticfiles %}
 
+        <ol class='simple_with_animation'>
+            {% for card in hand %}
+                <li>
+                    <img src="/{{ card.picture }}">
+                </li>
+            {% endfor %}
+        </ol>
 
 {% endblock %}
 

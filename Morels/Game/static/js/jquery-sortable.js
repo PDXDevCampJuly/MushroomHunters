@@ -240,7 +240,7 @@
     }
 
     return containerGroups[options.group]
-  }
+  };
 
   ContainerGroup.prototype = {
     dragInit: function  (e, itemContainer) {
@@ -611,7 +611,7 @@
     },
     traverse: function(callback) {
       $.each(this.items || [], function(item){
-        var group = $.data(this, subContainerKey)
+        var group = $.data(this, subContainerKey);
         if(group)
           group.traverse(callback)
       });
