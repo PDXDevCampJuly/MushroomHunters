@@ -9,6 +9,8 @@ from django.shortcuts import redirect
 # import random
 from django.shortcuts import render, get_object_or_404
 from django.template import loader, RequestContext
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 
 def make_starting_decks(person, person1):
@@ -84,9 +86,10 @@ def new_game(request):
 
         make_starting_decks(person, person1)
 
-        create_game(person, person1)
+        game_id = create_game(person, person1)
 
-        return redirect('/game/(?P<game_id>\d+)/')
+
+        return HttpResponseRedirect(reverse('/game/', args=(game_id)))
 
     else:
         return redirect('/invite/')
@@ -101,22 +104,31 @@ def create_game(person, person1):
     game = Game(player_1=person, player_2=person1, deck_id=deck, forest_id=forest, night_id=night, decay_id=decay,)
     game.save()
 
+    return game.id
+
     # game_pk = game.objects.get(id())
     # print(game_pk)
 
-def game(request):
-# def game(request, game_id):
-    # game_boop = get_object_or_404(Game, pk=game_id)
+# def game(request):
+def game(request, game_id):
+    game_boop = get_object_or_404(Game, pk=game_id)
+
     player_hand = request.user
 
     user = MyUser.objects.get(user__exact=player_hand)
 
+    player = Player.objects.get(userPlayer=user)
+
+    hand = Game.objects.get(id=game_id)
+
+    # plyhnd =
+
     # game = Game.objects.get(pk=id)
 
-    boop = Player.objects.filter(userPlayer=user)
+    # boop = Player.objects.filter(userPlayer=user)
 
-    blah = boop.all()[:1].get()
+    # blah = boop.all()[:1].get()
 
-    hand = blah.userHand.all()
+    # hand = blah.userHand.all()
 
-    return render(request, 'game.html', {'hand' : hand})
+    return render(request, 'game.html', {'plyhnd' : })
