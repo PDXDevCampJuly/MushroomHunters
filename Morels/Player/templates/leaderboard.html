@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+
+    {% for users in users|dictsortreversed:'level' %}
+        <p>{{ users }}(level {{ users.level }})</p>
+    {% endfor %}
+
+{% endblock %}

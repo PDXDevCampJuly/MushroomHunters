@@ -96,14 +96,19 @@ def create_game(person, person1):
     night = Night.objects.all()[:1].get()
     decay = Decay.objects.all()[:1].get()
 
-    game=Game(player_1=person, player_2=person1, deck_id=deck, forest_id=forest, night_id=night, decay_id=decay,)
+    game = Game(player_1=person, player_2=person1, deck_id=deck, forest_id=forest, night_id=night, decay_id=decay,)
     game.save()
 
+    # game_pk = game.objects.get(id())
+    # print(game_pk)
 
 def game(request):
     player_hand = request.user
 
     user = MyUser.objects.get(user__exact=player_hand)
+
+    # game = Game.objects.get(pk=id)
+    # print(game())
 
     boop = Player.objects.filter(userPlayer=user)
 

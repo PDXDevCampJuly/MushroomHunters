@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.views import login
 from django.db.models import Q
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from Game.models import Game
 from Player.models import Player
 
@@ -53,7 +53,8 @@ def signup(request):
 
     return render(request,
             'signup.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+            {'user_form': user_form, 'profile_form': profile_form,
+             'registered': registered} )
 
 
 def log_in(request):
@@ -94,19 +95,32 @@ def home(request):
 
 
 def profile(request):
-    current_player = MyUser.objects.filter(user=request.user)
+    user = request.user.username
+
+    current_player = MyUser.objects.filter(user=request.user)[0]
+    print('current player')
+    print(current_player.profilePic)
+
     member = Player.objects.filter(userPlayer=current_player)
-    print(member)
 
     current_games = Game.objects.filter(Q(player_1__in=member) | Q(player_2__in=member))
 
-    return render(request, 'profile.html', {'member': member, 'current_games': current_games})
+    return render(request, 'profile.html', {'user': user, 'current_player': current_player, 'current_games': current_games})
+
 
 def leader_board(request):
-    users = MyUser.objects.filter()
+    users = MyUser.objects.all()
+    board = []
 
+    print(users)
 
-    return render(request, 'leaderboard.html')
+    # for i in users.level:
+    #     print('Ypppp')
+        # board.append(i)
+    # board.sort()
+    print(board)
+
+    return render(request, 'leaderboard.html', {'users':users})
 
 
 

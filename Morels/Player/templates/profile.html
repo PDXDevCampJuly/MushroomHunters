@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block main %}
     <div>
-        <p>{{ player }}</p>
-        <img src="/media/{{ player.profilePic }}" alt="{{ player }}'s profile picture">
+        <img src="/media/{{ current_player.profilePic }}" alt="{{ user }}'s profile picture">
+        <p>{{ user }}</p>
     </div>
     <ul>
+        {% for game in current_games %}
         <li>
-            <p>{{ current_games }}</p>
+            <p>currently playing game</p>
         </li>
+        {% endfor %}
     </ul>
+
 {% endblock %}
 

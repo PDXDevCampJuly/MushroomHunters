@@ -5,7 +5,7 @@
 
 </head>
 <body>
-    {% if user.is_authenticated %}
+
     <nav>
         <a href="/">Home</a>
         <a href="/logout/">Logout</a>
@@ -13,10 +13,10 @@
         <a href="/profile/">Profile</a>
         <a href="#">V</a>
     </nav>
-    {% endif %}
+
 
     {% block main %}
-    {% endblock %}
+    {% endblock main %}
 
     <footer>
         <p>Morels blah blah Morels isn't mine</p>
