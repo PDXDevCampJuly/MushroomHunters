@@ -87,9 +87,7 @@ def new_game(request):
         make_starting_decks(person, person1)
 
         game_id = create_game(person, person1)
-
-
-        return HttpResponseRedirect(reverse('/game/', args=(game_id)))
+        return HttpResponseRedirect(reverse('game_urls:game', kwargs={ 'game_id': game_id }))
 
     else:
         return redirect('/invite/')
@@ -106,29 +104,23 @@ def create_game(person, person1):
 
     return game.id
 
-    # game_pk = game.objects.get(id())
-    # print(game_pk)
 
-# def game(request):
 def game(request, game_id):
     game_boop = get_object_or_404(Game, pk=game_id)
 
-    player_hand = request.user
+    game = Game.objects.get(pk=game_id)
 
-    user = MyUser.objects.get(user__exact=player_hand)
+    game_player = game.player_1
 
-    player = Player.objects.get(userPlayer=user)
+    hand = []
 
-    hand = Game.objects.get(id=game_id)
+    if game_player.userPlayer.user.id == request.user.id:
+        for i in game.player_1.userHand.filter():
+            hand.append(i)
+    elif game.player_2.userPlayer.user.id == request.user.id:
+        for i in game.player_2.userHand.filter():
+            hand.append(i)
+    else:
+        return redirect('/home/')
 
-    # plyhnd =
-
-    # game = Game.objects.get(pk=id)
-
-    # boop = Player.objects.filter(userPlayer=user)
-
-    # blah = boop.all()[:1].get()
-
-    # hand = blah.userHand.all()
-
-    return render(request, 'game.html', {'plyhnd' : })
+    return render(request, 'game.html', {'hand':hand})

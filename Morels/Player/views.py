@@ -113,11 +113,6 @@ def leader_board(request):
     board = []
 
     print(users)
-
-    # for i in users.level:
-    #     print('Ypppp')
-        # board.append(i)
-    # board.sort()
     print(board)
 
     return render(request, 'leaderboard.html', {'users':users})
