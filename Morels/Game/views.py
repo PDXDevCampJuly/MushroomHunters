@@ -7,6 +7,8 @@ from Game.models import Forest, Night, Deck, Decay
 from Player.models import Card, User, Player, MyUser
 from django.shortcuts import redirect
 # import random
+from django.shortcuts import render, get_object_or_404
+from django.template import loader, RequestContext
 
 
 def make_starting_decks(person, person1):
@@ -84,7 +86,7 @@ def new_game(request):
 
         create_game(person, person1)
 
-        return redirect('/game/')
+        return redirect('/game/(?P<game_id>\d+)/')
 
     else:
         return redirect('/invite/')
@@ -103,19 +105,18 @@ def create_game(person, person1):
     # print(game_pk)
 
 def game(request):
+# def game(request, game_id):
+    # game_boop = get_object_or_404(Game, pk=game_id)
     player_hand = request.user
 
     user = MyUser.objects.get(user__exact=player_hand)
 
     # game = Game.objects.get(pk=id)
-    # print(game())
 
     boop = Player.objects.filter(userPlayer=user)
 
     blah = boop.all()[:1].get()
 
     hand = blah.userHand.all()
-
-
 
     return render(request, 'game.html', {'hand' : hand})
