@@ -74,8 +74,6 @@ def log_in(request):
 
                 return redirect('/home/')
     return render(request, 'login.html', context_instance=RequestContext(request))
-            # else:
-            #     state = "Not active"
 
 
 @login_required(login_url='/login')

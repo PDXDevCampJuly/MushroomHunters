@@ -8,7 +8,13 @@
     <ul>
         {% for game in current_games %}
         <li>
-            <a href="/game/{{ game.id }}">Currently playing game with {{ other_player }} </a>
+            <a href="/game/{{ game.id }}">Currently playing game with
+                {% if current_player == request.user %}
+                    {{ game.player_2 }}
+                {% else %}
+                    {{ game.player_1 }}
+                {% endif %}
+            </a>
         </li>
         {% endfor %}
     </ul>
