@@ -28,27 +28,19 @@ def make_starting_decks(person, person1):
 
     num = 0
     for c in cards:
-
         if num < 8:
-
             forest.forestCard.add(c)
-
             forest.save()
-
-            num += 1
-
-        if num < 11:
+        if num > 7 and num < 11:
             person.userHand.add(c)
             person.save()
-            num +=1
         if num > 11 and num < 16:
             person1.userHand.add(c)
             person1.save()
-            num +=1
         else:
             deck.deckCard.add(c)
             deck.save()
-            num += 1
+        num += 1
 
     decay = Decay()
     decay.save()
@@ -106,13 +98,14 @@ def create_game(person, person1):
 
 
 def game(request, game_id):
-    game_boop = get_object_or_404(Game, pk=game_id)
-
+    # game_boop = get_object_or_404(Game, pk=game_id)
     game = Game.objects.get(pk=game_id)
 
     game_player = game.player_1
 
     hand = []
+
+    forest = []
 
     if game_player.userPlayer.user.id == request.user.id:
         for i in game.player_1.userHand.filter():
@@ -123,4 +116,9 @@ def game(request, game_id):
     else:
         return redirect('/home/')
 
-    return render(request, 'game.html', {'hand':hand})
+    for mushroom in game.forest_id.forestCard.filter():
+        forest.append(mushroom)
+
+    print(forest)
+
+    return render(request, 'game.html', {'hand':hand, 'forest': forest})

@@ -98,8 +98,8 @@ def profile(request):
     user = request.user.username
 
     current_player = MyUser.objects.filter(user=request.user)[0]
-    print('current player')
-    print(current_player.profilePic)
+
+
 
     member = Player.objects.filter(userPlayer=current_player)
 
