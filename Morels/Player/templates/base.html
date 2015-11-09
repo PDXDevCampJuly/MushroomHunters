@@ -1,24 +1,35 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/playerstyle.css' %}"/>
+    <title>Morels</title>
 </head>
 <body>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/logout/">Logout</a>
-        <a href="/leader_board/">Leader Board</a>
-        <a href="/profile/">Profile</a>
-        <a href="#">V</a>
-    </nav>
+    <div>
+        <nav>
+            <div class="nav firsthalf">
+                <a href="/">
+                    <img class="logo" src='{% static "img/logo.png" %}'>
+                </a>
+            </div>
+
+            <div class="nav secondhalf">
+                <a href="/logout/">Logout</a>
+                <a href="/leader_board/">Leader Board</a>
+                <a href="/profile/">{{ user }}</a>
+            </div>
+        </nav>
+    </div>
 
 
     {% block main %}
     {% endblock main %}
 
-    <footer>
+    <footer class="foot">
         <p>Morels blah blah Morels isn't mine</p>
         <p>This is just a fun project BLLAAHHHH</p>
     </footer>

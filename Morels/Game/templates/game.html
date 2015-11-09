@@ -2,30 +2,93 @@
 {% block main %}
     {% load staticfiles %}
 
+        <p id="currentPlayer">Current player: {{ current_player }}</p>
+
+        <p>{{ player_sticks }}</p>
+
+        <p>play cards</p>
+
+        <ul id="putDown" class="putDown">
+            <li></li>
+        </ul>
+
         <p>hand</p>
 
-        <ol class='simple_with_animation'>
+        <ul id="hand" class='hand'>
+
             {% for card in hand %}
                 <li>
-                    <img src="/{{ card.picture }}">
+                    <img draggable="true" id="{{ card.id }}" class="{{ card.stickValue }}" src="/{{ card.picture }}">
+                </li>
+
+            {% endfor %}
+        </ul>
+
+
+        <p>Decay</p>
+
+
+        <ul id="decay" class='decay'>
+            {% for token in decay %}
+                <li class="ui-state-highlight">
+                    <img id="{{ token.id }}" class="{{ token.stickValue }}" src="/{{ token.picture }}">
                 </li>
             {% endfor %}
-        </ol>
+        </ul>
 
         <p>Forest</p>
 
-        <ol class='simple_with_animation'>
+        <ul id="forest">
             {% for mushroom in forest %}
-                <li>
-                    <img src="/{{ mushroom.picture }}">
+                <li class="test">
+                    <img id="{{ mushroom.id }}" class="{{ mushroom.stickValue }}" src="/{{ mushroom.picture }}">
                 </li>
             {% endfor %}
-        </ol>
+        </ul>
+
+        <form id="post-form" action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Finished turn">
+        </form>
 
 {% endblock %}
 
 {% block script_tags %}
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-sortable.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+    <script src="https://code.angularjs.org/angular-1.0.1.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="https://rawgit.com/shvetsgroup/jquery.multisortable/master/src/jquery.multisortable.js"></script>
+    <script src="https://togetherjs.com/togetherjs.js"></script>
+    <script>
+        var currentPlayer = '{{ current_player }}';
+        var current_player = '{{ test|safe }}';
+        var current_user = '{{ boop|safe }}';
+        var $game_id='{{ game_id }}';
+        var sticks='{{ player_sticks }}';
+        var player = '{{ user }}';
+        var $forest= $('#forest');
+        var $hand= $('#hand');
+        var card_value= {};
+
+
+        $( "#forest > li:gt(2)").attr('class', 'forest');
+
+        (function () {
+            if (current_player === current_user){
+                $($forest).attr('class', 'simple_with_no_drop');
+//                $($hand).attr('class', 'sortable');
+//                $('#decay').attr('class', 'sortable');
+                $($hand).attr('class', 'simple_with_drop');
+                $('#decay').attr('class', 'simple_with_no_drop');
+            } else {
+                $($hand).attr('class', 'example');
+            }
+        }());
+
+    </script>
     <script type="text/javascript" src="{% static 'js/gamejs.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/getCard.js' %}"></script>
 {% endblock %}

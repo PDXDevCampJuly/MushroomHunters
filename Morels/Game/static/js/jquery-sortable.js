@@ -29,6 +29,7 @@
 
 
 !function ( $, window, pluginName, undefined){
+
   var containerDefaults = {
     // If true, items can be dragged from this container
     drag: true,
@@ -96,13 +97,13 @@
       $item.css({
         height: $item.outerHeight(),
         width: $item.outerWidth()
-      })
-      $item.addClass(container.group.options.draggedClass)
+      });
+      $item.addClass(container.group.options.draggedClass);
       $("body").addClass(container.group.options.bodyClass)
     },
     // Called when the mouse button is being released
     onDrop: function ($item, container, _super, event) {
-      $item.removeClass(container.group.options.draggedClass).removeAttr("style")
+      $item.removeClass(container.group.options.draggedClass).removeAttr("style");
       $("body").removeClass(container.group.options.bodyClass)
     },
     // Called on mousedown. If falsy value is returned, the dragging will not start.
@@ -267,7 +268,7 @@
         if(!this.distanceMet(e) || !this.delayMet)
           return;
 
-        this.options.onDragStart(this.item, this.itemContainer, groupDefaults.onDragStart, e)
+        this.options.onDragStart(this.item, this.itemContainer, groupDefaults.onDragStart, e);
         this.item.before(this.placeholder);
         this.dragging = true
       }
@@ -353,7 +354,7 @@
     },
     getContainerDimensions: function  () {
       if(!this.containerDimensions)
-        setDimensions(this.containers, this.containerDimensions = [], this.options.tolerance, !this.$getOffsetParent());
+        setDimensions(this.containers, this.containerDimensions = [], this.options.tolerance, !this.$getOffsetParent())
       return this.containerDimensions
     },
     getContainer: function  (element) {
@@ -401,7 +402,7 @@
       ) >= this.options.distance)
     },
     getPointer: function(e) {
-      var o = e.originalEvent || e.originalEvent.touches && e.originalEvent.touches[0];
+      var o = e.originalEvent || e.originalEvent.touches && e.originalEvent.touches[0]
       return {
         left: e.pageX || o.pageX,
         top: e.pageY || o.pageY
@@ -673,6 +674,7 @@
    *   either options on init
    *   or a method name followed by arguments to pass to the method
    */
+
   $.fn[pluginName] = function(methodOrOptions) {
     var args = Array.prototype.slice.call(arguments, 1);
 

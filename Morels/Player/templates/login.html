@@ -1,25 +1,33 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/playerstyle.css' %}"/>
     <title>Morels</title>
 </head>
 
-<body>
-    <p>Don't have an account? <a href="/" class="signup">signup now!</a></p>
+<body class="signup">
+    <div class="signupnow">
+        <p>Don't have an account?
+            <a class="link" href="/">signup now!</a>
+        </p>
+    </div>
+
 	{{ state }}
-	<form action="/login/" method="post">
+	<form class="form" action="/login/" method="post">
         {% csrf_token %}
-		{% if next %}
-		<input type="hidden" name="next" value="{{ next }}" />
-		{% endif %}
-		<input type="text" name="username" value="{{ username}}" placeholder="Username"/>
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% endif %}
+        <input type="text" name="username" value="{{ username}}" placeholder="Username"/>
 
         <input type="email" name="email" value="" placeholder="email"/>
 
-		<input type="password" name="password" value="" placeholder="password"/>
+        <input type="password" name="password" value="" placeholder="password"/>
 
-		<input type="submit" value="Log In" />
+        <input class="button" type="submit" value="Log In" />
 	</form>
 </body>
 </html>

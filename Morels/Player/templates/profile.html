@@ -1,22 +1,35 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block main %}
-    <div>
-        <img src="/media/{{ current_player.profilePic }}" alt="{{ user }}'s profile picture">
-        <p>{{ user }}</p>
+    <div class="profileimg">
+        {% if not imagecount %}
+            <img src="/media/profile_images/noPic.png" alt="{{ user }}'s profile picture">
+        {% else %}
+            <img src="/media/{{ current_player.profilePic }}" alt="{{ user }}'s profile picture">
+        {% endif %}
+        <!--<p>{{ user }}</p>-->
+
+
     </div>
     <ul>
-        {% for game in current_games %}
-        <li>
-            <a href="/game/{{ game.id }}">Currently playing game with
-                {% if current_player == request.user %}
-                    {{ game.player_2 }}
-                {% else %}
-                    {{ game.player_1 }}
-                {% endif %}
-            </a>
-        </li>
-        {% endfor %}
+
+        {% if count < 1 %}
+            <p>You are not playing any games currently</p>
+        {% else %}
+
+            {% for game in current_games %}
+            <li>
+                <a href="/game/{{ game.id }}">Currently playing game with
+                    {% if user == game.player_2.userPlayer.user.username %}
+                        {{ game.player_1 }}
+                    {% else %}
+                        {{ game.player_2 }}
+                    {% endif %}
+                </a>
+            </li>
+            {% endfor %}
+
+        {% endif %}
     </ul>
 
 {% endblock %}

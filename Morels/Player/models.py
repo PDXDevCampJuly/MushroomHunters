@@ -28,7 +28,7 @@ class Card(models.Model):
 
 class Player(models.Model):
     score = models.IntegerField(default=0)
-
+    sticks = models.IntegerField(default=0)
     userHand = models.ManyToManyField(Card, blank=True)
     userPlayer = models.ForeignKey(MyUser)
 

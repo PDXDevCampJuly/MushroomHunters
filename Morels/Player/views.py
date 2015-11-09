@@ -5,16 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.views import login
 from django.db.models import Q
-# from django.contrib.auth.models import User
 from Game.models import Game
 from Player.models import Player
-
+from Player.forms.forms import UserForm, UserProfileForm
 from .models import MyUser
 # Create your views here.
-from Player.forms.forms import UserForm, UserProfileForm
 
 
 def signup(request):
+    """Creates user if form is valid"""
 
     if request.user.is_authenticated():
         return redirect('/home/')
@@ -53,11 +52,13 @@ def signup(request):
 
     return render(request,
             'signup.html',
-            {'user_form': user_form, 'profile_form': profile_form,
+            {'user_form': user_form,
+             'profile_form': profile_form,
              'registered': registered} )
 
 
 def log_in(request):
+    """Logs in user is info user has given is valid"""
     username = password = ""
 
     if request.user.is_authenticated():
@@ -78,12 +79,14 @@ def log_in(request):
 
 @login_required(login_url='/login')
 def user_logout(request):
+    """Logs out user"""
     logout(request)
 
     return redirect('/login/')
 
 
 def home(request):
+    """If user is logged: Go to home page, Else: Go to signup page"""
     # request.session.delete_test_cookie()
 
     if request.user.is_authenticated():
@@ -93,20 +96,28 @@ def home(request):
 
 
 def profile(request):
+    """Sends info to template"""
+
     user = request.user.username
 
     current_player = MyUser.objects.filter(user=request.user)[0]
-
-
 
     member = Player.objects.filter(userPlayer=current_player)
 
     current_games = Game.objects.filter(Q(player_1__in=member) | Q(player_2__in=member))
 
-    return render(request, 'profile.html', {'user': user, 'current_player': current_player, 'current_games': current_games})
+    count = current_games.count()
+
+    imagecount = current_player.profilePic
+
+    return render(request, 'profile.html', {'user': user,
+                                            'current_player': current_player,
+                                            'current_games': current_games,
+                                            'count': count, 'imagecount': imagecount})
 
 
 def leader_board(request):
+    """Sends info to template"""
     users = MyUser.objects.all()
     board = []
 

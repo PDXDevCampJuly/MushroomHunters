@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    </head>
-
-    <body>
-        <p>already have an account? <a href="/login/" class="login">login now!</a></p>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/playerstyle.css' %}"/>
+    <title>Morels</title>
+</head>
+    <body class="signup">
+        <div class="signupnow">
+            <p>already have an account?
+                <a href="/login/" class="link">login now!</a>
+            </p>
+        </div>
         {% if registered %}
         
         {% else %}
-        <h1>Sign up!</h1><br />
 
-        <form id="user_form" method="post" action="/" enctype='multipart/form-data'>
+        <form class="form test" id="user_form" method="post" action="/" enctype='multipart/form-data'>
+
+        <h1>Sign up!</h1><br />
 
             {% csrf_token %}
             {{ user_form.as_p }}

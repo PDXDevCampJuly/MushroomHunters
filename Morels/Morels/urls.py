@@ -29,10 +29,8 @@ urlpatterns = [
     url(r'^logout/$', 'Player.views.user_logout', name='logout'),
     url(r'^profile/', 'Player.views.profile', name='profile'),
     url(r'^invite/', 'Game.views.invite', name='invite'),
-    # url(r'^game/', 'Game.views.game', name='make_starting_deck'),
     url(r'^newgame/', 'Game.views.new_game', name='newgame'),
     url(r'^leader_board/', 'Player.views.leader_board', name='leader_board'),
-    # url(r'^game/$', include(Game.urls)),
     url(r'^game/', include('Game.urls', namespace="game_urls"))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                              document_root=settings.MEDIA_ROOT)

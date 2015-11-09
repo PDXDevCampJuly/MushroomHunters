@@ -34,6 +34,7 @@ class Game(models.Model):
     date = models.DateTimeField(editable=False)
     player_1 = models.ForeignKey(Player, related_name='player_1')
     player_2 = models.ForeignKey(Player, related_name='player_2')
+    current_player = models.ForeignKey(Player, related_name='current_player', default=None)
 
     deck_id = models.ForeignKey(Deck, related_name='deck_id', default=None)
     forest_id = models.ForeignKey(Forest, related_name='forest_id', default=None)
@@ -53,3 +54,13 @@ class PlayingCard(models.Model):
 
     def __str__(self):
         return self.fryingPan_id
+
+
+
+
+
+
+
+
+
+
