@@ -5,6 +5,21 @@
 var cards = [];
 var forest = [];
 var decay = [];
+var sellingCards = [];
+
+(function create_post() {
+    $('#hand').each(function () {
+
+        $(this).find('li').each(function () {
+            var classNumber = $(this).children('img').attr('id');
+            console.log(classNumber);
+            cards.push(classNumber);
+        });
+        console.log(cards);
+    });
+}());
+
+
 
 $('.forest').sortable({
     items: ':not(.forest)',
@@ -29,9 +44,11 @@ $('.forest').sortable({
 });
 
 (function(){
-    if (cards.length <= 8){
+    //console.log(cards.length);
+    if (cards.length < 8){
+        console.log("boop");
         $(function () {
-	    $("#hand,#decay,#forest").sortable({
+	    $("#decay,#forest").sortable({
 		    connectWith: "#hand",
 		start: function (event, ui) {
 			ui.item.toggleClass("highlight");
@@ -40,13 +57,8 @@ $('.forest').sortable({
 			ui.item.toggleClass("highlight");
 		}
 	});
-	$("#hand,#decay,#forest").disableSelection();
-    });
-    }
-    else{
-        $(function () {
-	    $("#hand,#decay,#forest").sortable({
-		    connectWith: "#none",
+        $(" #hand ").sortable({
+		    connectWith: "#placeholder",
 		start: function (event, ui) {
 			ui.item.toggleClass("highlight");
 		},
@@ -54,7 +66,35 @@ $('.forest').sortable({
 			ui.item.toggleClass("highlight");
 		}
 	});
-	$("#hand,#decay,#forest").disableSelection();
+	//$("#hand,#decay,#forest,#placehoder").disableSelection();
+    //});
+    //    $(function () {
+    //    $("#hand,#placeholder").sortable({
+    //        connectWith: "#placeholder",
+    //    start: function (event, ui) {
+    //        ui.item.toggleClass("highlight");
+    //    },
+    //    stop: function (event, ui) {
+    //        ui.item.toggleClass("highlight");
+    //    }
+    //});
+    //$("#hand,#placeholder").disableSelection();
+    });
+    }
+
+    else{
+        console.log("whoa");
+        $(function () {
+	    $("#hand").sortable({
+		    connectWith: "#placehoder",
+		start: function (event, ui) {
+			ui.item.toggleClass("highlight");
+		},
+		stop: function (event, ui) {
+			ui.item.toggleClass("highlight");
+		}
+	});
+	//$("#hand,#placehoder").disableSelection();
 
     });
     }
@@ -90,6 +130,24 @@ $('.forest').mouseover(function(e) {
     }
 });
 
+function sendSellAjax() {
+    $.ajax({
+        url: '/game/' + $game_id + '/sell_cards/', // the endpoint
+        method: "POST", // http method
+        data: {sellingCards: sellingCards},
+        success: function (json) {
+            $('#post-sell').val(''); // remove the value from the input
+            console.log(json); // log the returned json to the console
+            console.log("success"); // another sanity check
+        },
+
+        // handle a non-successful response
+        error: function (xhr, errmsg, err) {
+            console.log(errmsg, err);
+        }
+    });
+}
+
 function sendAjax() {
     $.ajax({
         url: '/game/' + $game_id + '/update/', // the endpoint
@@ -109,20 +167,6 @@ function sendAjax() {
 }
 
 
-
-
-function create_post() {
-    $('#hand').each(function () {
-
-        $(this).find('li').each(function () {
-            var classNumber = $(this).children('img').attr('id');
-            console.log(classNumber);
-            cards.push(classNumber);
-        });
-    });
-}
-
-
 function createForest() {
     $('#forest').each(function () {
 
@@ -133,6 +177,14 @@ function createForest() {
     });
 }
 
+function createSell() {
+    console.log('sup?')
+}
+
+
+function createPlay() {
+    console.log("night vale")
+}
 
 function createDecay() {
     $('#decay').each(function () {
@@ -142,18 +194,46 @@ function createDecay() {
             decay.push(parseInt(classNumber));
         });
     });
-};
+}
 
 
+$('#post-sell').on('submit', function (event) {
+    event.preventDefault();
+    console.log("Selling form submitted!");  // sanity check
+    if (player == currentPlayer) {
+        event.preventDefault();
+        createSell();
+        sendSellAjax();
+        //location.reload().delay( 1100 );
+    }
+    else{
+        console.log("Blah");
+        event.preventDefault();
+    }
+});
 
+
+$('#post-play').on('submit', function (event) {
+    event.preventDefault();
+    console.log("Playing cards form submitted!");  // sanity check
+    if (player == currentPlayer) {
+        event.preventDefault();
+        createPlay();
+        //sendPlayAjax();
+        //location.reload().delay( 1100 );
+    }
+    else{
+        console.log("Blah");
+        event.preventDefault();
+    }
+});
 
 
 $('#post-form').on('submit', function (event) {
     event.preventDefault();
-    console.log("form submitted!");  // sanity check
+    console.log("Takeing cards form submitted!");  // sanity check
     if (player == currentPlayer) {
         event.preventDefault();
-        create_post();
         createDecay();
         createForest();
         sendAjax();
@@ -168,61 +248,129 @@ $('#post-form').on('submit', function (event) {
 
 
 
-$(document).ready(function() {
 
-    var selectedClass = 'ui-state-highlight',
-        clickDelay = 600,
-        // click time (milliseconds)
-        lastClick, diffClick; // timestamps
 
-    $("#decay li")
-    // Script to deferentiate a click from a mousedown for drag event
-    .bind('mousedown mouseup', function(e) {
-        if (e.type == "mousedown") {
-            lastClick = e.timeStamp; // get mousedown time
-        } else {
-            diffClick = e.timeStamp - lastClick;
-            if (diffClick < clickDelay) {
-                // add selected class to group draggable objects
-                $(this).toggleClass(selectedClass);
-            }
-        }
-    })
-    .draggable({
-        revertDuration: 10,
-        // grouped items animate separately, so leave this number low
-        containment: '.demo',
-        start: function(e, ui) {
-            ui.helper.addClass(selectedClass);
-        },
-        stop: function(e, ui) {
-            // reset group positions
-            $('.' + selectedClass).css({
-                top: 0,
-                left: 0
-            });
-        },
-        drag: function(e, ui) {
-            // set selected group position to main dragged object
-            // this works because the position is relative to the starting position
-            $('.' + selectedClass).css({
-                top: ui.position.top,
-                left: ui.position.left
-            });
-        }
-    });
+//$(document).ready(function(){
+//     $(".droppable").droppable({
+//        drop: function(event, ui) {
+//            var $list = $(this);
+//            $helper = ui.helper;
+//            $($helper).removeClass("selected");
+//            var $selected = $(".selected");
+//            if($selected.length > 1){
+//                moveSelected($list,$selected);
+//            }else{
+//                moveItem(ui.draggable,$list);
+//            }
+//        }, tolerance: "touch"
+//     });
+//
+//     $(".draggable").draggable({
+//        revert: "invalid",
+//        helper: "clone",
+//        cursor: "move",
+//        drag: function(event,ui){
+//            var $helper = ui.helper;
+//            $($helper).removeClass("selected");
+//            var $selected = $(".selected");
+//            if($selected.length > 1){
+//                $($helper).html($selected.length + " items");
+//            }
+//        }
+//     });
+//
+//    function moveSelected($list,$selected){
+//        $($selected).each(function(){
+//            $(this).fadeOut(function(){
+//                $(this).appendTo($list).removeClass("selected").fadeIn();
+//            });
+//        });
+//    }
+//
+//    function moveItem( $item,$list ) {
+//        $item.fadeOut(function() {
+//            $item.find(".item").remove();
+//            $item.appendTo( $list ).fadeIn();
+//        });
+//    }
+//
+//    $(".item").click(function(){
+//        $(this).toggleClass("selected");
+//    });
+//
+//});
 
-    $("#hand, #decay").sortable().droppable({
-        drop: function(e, ui) {
-            $('.' + selectedClass).appendTo($(this)).add(ui.draggable) // ui.draggable is appended by the script, so add it after
-            .removeClass(selectedClass).css({
-                top: 0,
-                left: 0
-            });
-        }
-    });
 
-});
+
+
+
+
+//$(".grouped").multiDraggable({ group: $(".grouped")});
+
+
+
+
+
+//$(document).ready(function() {
+//
+//    var selectedClass = 'ui-state-highlight',
+//        clickDelay = 600,
+//        // click time (milliseconds)
+//        lastClick, diffClick; // timestamps
+//
+//    $("#decay li")
+//    // Script to deferentiate a click from a mousedown for drag event
+//    .bind('mousedown mouseup', function(e) {
+//            console.log("TO");
+//            console.log($(e.target).parent().attr('class'));
+//        if (e.type == "mousedown") {
+//            lastClick = e.timeStamp; // get mousedown time
+//        } else {
+//            diffClick = e.timeStamp - lastClick;
+//            if (diffClick < clickDelay) {
+//                console.log("hoo");
+//                // add selected class to group draggable objects
+//                $(this).toggleClass(selectedClass);
+//                console.log(this)
+//            }
+//        }
+//    })
+//    .draggable({
+//        revertDuration: 10,
+//        // grouped items animate separately, so leave this number low
+//        containment: '.hand',
+//        start: function(e, ui) {
+//            ui.helper.addClass(selectedClass);
+//        },
+//        stop: function(e, ui) {
+//            // reset group positions
+//            $('.' + selectedClass).css({
+//                top: 0,
+//                left: 0
+//            });
+//        },
+//        drag: function(e, ui) {
+//            // set selected group position to main dragged object
+//            // this works because the position is relative to the starting position
+//            $('.' + selectedClass).css({
+//                top: ui.position.top,
+//                left: ui.position.left
+//            });
+//        }
+//    });
+//
+//    $("#hand, #decay").sortable().droppable({
+//        drop: function(e, ui) {
+//            $('.' + selectedClass).appendTo($(this)).add(ui.draggable); // ui.draggable is appended by the script, so add it after
+//            //.removeClass(selectedClass).css({
+//            //    top: 0,
+//            //    left: 0
+//            //});
+//        }
+//    });
+//
+//
+//});
 
 
 

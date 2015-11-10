@@ -170,9 +170,17 @@ input:-webkit-autofill {
 
 /*}*/
 
-li.selected { outline: 1px solid red; }
+.putDown{
+    height: 150px;
+}
 
-ul > li > img{
+.placehoder{
+    background-color: #999;
+}
+
+/*li.selected { outline: 1px solid red; }*/
+
+ul > li > img, .placehoder{
         width: 107px;
         height: 145px;
 }

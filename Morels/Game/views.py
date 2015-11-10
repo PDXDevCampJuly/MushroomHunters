@@ -170,7 +170,7 @@ def game(request, game_id):
     boop = json.dumps(request.user.username)
 
     update(request, game_id)
-    cardClass(request, game_id)
+    sell_cards(request, game_id)
 
 
 
@@ -200,7 +200,6 @@ def update(request, game_id):
         decay_id = game.decay_id
         decay_obj = Decay.objects.get(id=decay_id.id)
         fore = Forest.objects.get(id=forest_obj.id)
-        print("HOK")
 
         forest_card(game, post_forest, fore, request)
         decay_card(game, post_decay, decay_obj, request)
@@ -290,11 +289,8 @@ def decay_card(game, post_decay, decay_obj, request):
     for i in decay_cards:
         test.append(str(i))
 
-    print(test)
 
     missing = list(set(test) - set(post_decay))
-    print(post_decay)
-    print(missing)
 
     if decay_num == 4:
         decay_obj.decayDeckCard.clear()
@@ -303,9 +299,7 @@ def decay_card(game, post_decay, decay_obj, request):
     if decay_num != len(decay_cards):
         for i in missing:
             decay_delcard = game.decay_id.decayDeckCard.filter(id=i)
-            print(decay_delcard)
             other_card = Card.objects.get(id=i)
-            print(other_card)
 
             for e in decay_delcard:
                 if game.player_1.userPlayer.user.id == request.user.id:
@@ -321,12 +315,11 @@ def decay_card(game, post_decay, decay_obj, request):
 
 
 @csrf_exempt
-def cardClass(request, game_id):
+def sell_cards(request, game_id):
     if request.method == 'POST':
         post_check = request.POST.getlist('cardClass')
         game = Game.objects.get(id=game_id)
 
-        print(post_check)
         for i in post_check:
             if game.player_1.userPlayer.user.id == request.user.id:
                 player_one = Player.objects.get(id=game.player_1.id)

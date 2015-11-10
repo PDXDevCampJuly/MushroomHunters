@@ -8,19 +8,29 @@
 
         <p>play cards</p>
 
-        <ul id="putDown" class="putDown">
-            <li></li>
+        <ul id="placeholder" class="putDown ui-sortable simple_with_no_drop">
+            <li class="placeholder">
+                put cards here
+            </li>
         </ul>
+
+        <form id="post-sell" action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Sell cards">
+        </form>
+
+        <form id="post-play" action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Play Cards">
+        </form>
 
         <p>hand</p>
 
         <ul id="hand" class='hand'>
-
             {% for card in hand %}
-                <li>
-                    <img draggable="true" id="{{ card.id }}" class="{{ card.stickValue }}" src="/{{ card.picture }}">
+                <li  class="draggable">
+                    <img id="{{ card.id }}" class="{{ card.stickValue }}" src="/{{ card.picture }}">
                 </li>
-
             {% endfor %}
         </ul>
 
@@ -30,7 +40,7 @@
 
         <ul id="decay" class='decay'>
             {% for token in decay %}
-                <li class="ui-state-highlight">
+                <li  class="item draggable">
                     <img id="{{ token.id }}" class="{{ token.stickValue }}" src="/{{ token.picture }}">
                 </li>
             {% endfor %}
@@ -40,7 +50,7 @@
 
         <ul id="forest">
             {% for mushroom in forest %}
-                <li class="test">
+                <li class="draggable">
                     <img id="{{ mushroom.id }}" class="{{ mushroom.stickValue }}" src="/{{ mushroom.picture }}">
                 </li>
             {% endfor %}
@@ -81,7 +91,7 @@
                 $($forest).attr('class', 'simple_with_no_drop');
 //                $($hand).attr('class', 'sortable');
 //                $('#decay').attr('class', 'sortable');
-                $($hand).attr('class', 'simple_with_drop');
+//                $($hand).attr('class', 'simple_with_no_drop');
                 $('#decay').attr('class', 'simple_with_no_drop');
             } else {
                 $($hand).attr('class', 'example');
