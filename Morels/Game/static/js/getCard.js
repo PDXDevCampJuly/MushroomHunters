@@ -11,6 +11,7 @@ var crdSource = [];
 var plsBeFale = true;
 var method = ['buyCards', '2'];
 var testtest = ['takefromfeet'];
+var pan = [];
 //var buying =false;
 
 (function createPost() {
@@ -166,6 +167,15 @@ function sendAjax() {
     });
 }
 
+function createDecay() {
+    $('#decay').each(function () {
+
+        $(this).find('li').each(function () {
+            var classNumber = $(this).children('img').attr('id');
+            decay.push(parseInt(classNumber));
+        });
+    });
+}
 
 function createForest() {
     $('#forest').each(function () {
@@ -220,20 +230,13 @@ function checkValid() {
         $(this).find('li:gt(0)').each(function () {
             var classsrc = $(this).children('img').attr('src');
             crdSource.push(classsrc);
+            if (classsrc == '/static/pan.png'){
+                pan = '1';
+                crdSource.pop(crdSource)
+            }
         });
     });
 }
-
-function createDecay() {
-    $('#decay').each(function () {
-
-        $(this).find('li').each(function () {
-            var classNumber = $(this).children('img').attr('id');
-            decay.push(parseInt(classNumber));
-        });
-    });
-}
-
 
 $('#post-sell').on('submit', function (event) {
     event.preventDefault();
@@ -243,10 +246,12 @@ $('#post-sell').on('submit', function (event) {
         var chkval = crdSource.allValuesSame();
         if (chkval == true){
             console.log(crdSource.length);
-            if (crdSource.length >= 2 ) {
-                event.preventDefault();
-                createSell();
-                sendSellAjax();
+            if (pan.length == 1 ) {
+                if (crdSource.length >= 2) {
+                    event.preventDefault();
+                    createSell();
+                    sendSellAjax();
+                }
             }
         }
         //location.reload().delay( 1100 );

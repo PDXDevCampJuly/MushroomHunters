@@ -14,12 +14,12 @@
             </li>
         </ul>
 
-        <form id="post-sell" action="" method="post">
+        <form id="post-sell" class="sellPlay" action="" method="post">
             {% csrf_token %}
             <input type="submit" value="Play  cards">
         </form>
 
-        <form id="post-play" action="" method="post">
+        <form id="post-play" class="sellPlay" method="post">
             {% csrf_token %}
             <input type="submit" value="Sell Cards">
         </form>

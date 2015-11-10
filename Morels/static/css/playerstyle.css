@@ -16,7 +16,9 @@ li {
     display: table-cell;
 }
 
-
+.sellPlay {
+    display: inline-block;
+}
 
  /* BASE STYLE */
  .nav > a {
@@ -205,4 +207,8 @@ ul > li > img, .placehoder{
 .profileimg {
     /*margin-top: 20px;*/
     margin: 20px 0 0 16px;
+}
+
+.gameLink {
+
 }

@@ -18,7 +18,7 @@
         {% else %}
 
             {% for game in current_games %}
-            <li>
+            <li class="gameLink">
                 <a href="/game/{{ game.id }}">Currently playing game with
                     {% if user == game.player_2.userPlayer.user.username %}
                         {{ game.player_1 }}
