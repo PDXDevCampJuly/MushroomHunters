@@ -28,6 +28,53 @@
  * ========================================================== */
 
 
+
+
+        //if (buying == true){
+        //    sendBuyAjax();
+        //} else {
+        //    sendAjax();
+            //location.reload().delay( 1100 );
+        //}
+    //}
+    //else{
+    //    console.log("Bblah");
+    //    event.preventDefault();
+    //}
+
+
+
+function checkBuy() {
+    console.log("step1");
+    $('#hand').each(function () {
+        console.log('step2');
+
+      if (! $(this).find('li').hasClass('test '))
+      {
+          console.log('step3');
+        // code for non-disabled li goes here
+          console.log("hh");
+          buying = true;
+          console.log(buying)
+      }
+      buying = false
+    });
+    //$('#hand').each(function () {
+    //
+    //    $(this).find('li').each(function () {
+    //        var classNumber = $(this).attr('class');
+    //         if (classNumber == ".test"){
+    //             return true
+    //         }
+    //    });
+    //    console.log(cards);
+    //});
+}
+
+
+
+
+
 !function ( $, window, pluginName, undefined){
 
   var containerDefaults = {
