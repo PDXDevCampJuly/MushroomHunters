@@ -134,26 +134,29 @@ def game(request, game_id):
     player_sticks = 0
     hand = []
     forest = []
+    playing = []
     decay = []
     player_one = Player.objects.get(id=game_player.id)
     player_two = Player.objects.get(id=game.player_2.id)
     current_player = game.current_player
-
     if game_player.userPlayer.user.id == request.user.id:
         player_sticks = (player_one.sticks)
         for i in game.player_1.userHand.filter():
             hand.append(i)
-        player2 = True
+        for crd in game.player_1.userPlayingCards.filter():
+            playing.append(crd)
 
     elif game.player_2.userPlayer.user.id == request.user.id:
-        player_sticks = (player_two.sticks)
+        player_sticks = player_two.sticks
         for i in game.player_2.userHand.filter():
             hand.append(i)
-        player2 = False
+        for crd in game.player_2.userPlayingCards.filter():
+            playing.append(crd)
     else:
         return redirect('/home/')
 
     user = request.user.username
+
 
     # current_player = MyUser.objects.filter(user=request.user)[0]
 
@@ -183,7 +186,8 @@ def game(request, game_id):
                                          'game_id': game_id,
                                          'player_sticks': player_sticks,
                                          'current_player': current_player,
-                                         'user': user
+                                         'user': user,
+                                         'playing': playing
                                          })
 
 
@@ -317,21 +321,62 @@ def decay_card(game, post_decay, decay_obj, request):
 @csrf_exempt
 def sell_cards(request, game_id):
     if request.method == 'POST':
-        post_check = request.POST.getlist('cardClass')
+        print('hand')
+        post_check = request.POST.getlist('sellingCards[]')
         game = Game.objects.get(id=game_id)
+        hand =[]
+        sell_num = len(post_check)
+        game_player = game.player_1
+        player_one = Player.objects.get(id=game_player.id)
+        player_two = Player.objects.get(id=game.player_2.id)
 
-        for i in post_check:
-            if game.player_1.userPlayer.user.id == request.user.id:
-                player_one = Player.objects.get(id=game.player_1.id)
-                player_one.sticks -= int(i)
-                player_one.save()
-            elif game.player_2.userPlayer.user.id == request.user.id:
-                player_two = Player.objects.get(id=game.player_2.id)
-                player_two.sticks -= int(i)
-                player_two.save()
+        if game_player.userPlayer.user.id == request.user.id:
+            for i in game_player.userHand.all():
+                 hand.append(i.id)
+
+        elif game.player_2.userPlayer.user.id == request.user.id:
+            for i in game.player_2.userHand.all():
+                 hand.append(i.id)
 
 
+        vodo = list(set(post_check) - set(hand))
 
+        # Loop through
+        # if sell_num != len(hand):
+
+        for i in vodo:
+            sel_crd = game.player_2.userHand.filter(id=i)
+            other_card = Card.objects.get(id=i)
+            for e in sel_crd:
+                # print(e.stickValue)
+
+                if game.player_1.userPlayer.user.id == request.user.id:
+
+                    game.player_1.userHand.remove(e)
+
+                    game.player_1.userPlayingCards.add(other_card)
+
+                    game.player_1.score += e.stickValue
+
+                    game.player_1.save()
+
+                elif game.player_2.userPlayer.user.id == request.user.id:
+                    game.player_2.userHand.remove(e)
+
+                    game.player_2.userPlayingCards.add(other_card)
+
+                    game.player_2.score += e.stickValue
+
+                    game.player_2.save()
+
+        # Get card ids in player hand
+
+        # Get list of cards from post
+        # Get matching ones from PlayerHand
+        # Copy card from PlayerHand into UserPlayingCards
+        # delete card from PLayerHand
+        # for I in UserPlayingCards.stickvalue add I in score
+        # Don't forget to save everything! ^-^
 
         try:
             print("Yoo")
@@ -339,11 +384,11 @@ def sell_cards(request, game_id):
             print('no good')
 
         return HttpResponse(
-            print('post_decay'),
+            # print('post_decay'),
             print("blah")
             )
     else:
         return HttpResponse(
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
-        )
+            )

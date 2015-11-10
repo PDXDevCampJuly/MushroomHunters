@@ -24,6 +24,16 @@
             <input type="submit" value="Play Cards">
         </form>
 
+        <p>Played cards</p>
+
+        <ul id="playingcards">
+            {% for playing in playing %}
+            <li class="playing">
+                <img src="/{{ playing.picture }}">
+            </li>
+            {% endfor %}
+        </ul>
+
         <p>hand</p>
 
         <ul id="hand" class='hand'>

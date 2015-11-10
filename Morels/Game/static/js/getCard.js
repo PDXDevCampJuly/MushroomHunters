@@ -6,6 +6,7 @@ var cards = [];
 var forest = [];
 var decay = [];
 var sellingCards = [];
+var sellingCrdsVal = [];
 
 (function create_post() {
     $('#hand').each(function () {
@@ -66,27 +67,14 @@ $('.forest').sortable({
 			ui.item.toggleClass("highlight");
 		}
 	});
-	//$("#hand,#decay,#forest,#placehoder").disableSelection();
-    //});
-    //    $(function () {
-    //    $("#hand,#placeholder").sortable({
-    //        connectWith: "#placeholder",
-    //    start: function (event, ui) {
-    //        ui.item.toggleClass("highlight");
-    //    },
-    //    stop: function (event, ui) {
-    //        ui.item.toggleClass("highlight");
-    //    }
-    //});
-    //$("#hand,#placeholder").disableSelection();
     });
     }
 
     else{
         console.log("whoa");
         $(function () {
-	    $("#hand").sortable({
-		    connectWith: "#placehoder",
+	    $(" #hand ").sortable({
+		    connectWith: "#placeholder",
 		start: function (event, ui) {
 			ui.item.toggleClass("highlight");
 		},
@@ -94,7 +82,6 @@ $('.forest').sortable({
 			ui.item.toggleClass("highlight");
 		}
 	});
-	//$("#hand,#placehoder").disableSelection();
 
     });
     }
@@ -130,11 +117,12 @@ $('.forest').mouseover(function(e) {
     }
 });
 
+
 function sendSellAjax() {
     $.ajax({
         url: '/game/' + $game_id + '/sell_cards/', // the endpoint
         method: "POST", // http method
-        data: {sellingCards: sellingCards},
+        data: {sellingCards: sellingCards, sellingCrdsVal: sellingCrdsVal},
         success: function (json) {
             $('#post-sell').val(''); // remove the value from the input
             console.log(json); // log the returned json to the console
@@ -147,6 +135,7 @@ function sendSellAjax() {
         }
     });
 }
+
 
 function sendAjax() {
     $.ajax({
@@ -178,7 +167,18 @@ function createForest() {
 }
 
 function createSell() {
-    console.log('sup?')
+    console.log('sup?');
+    $('#placeholder').each(function () {
+
+        $(this).find('li:gt(0)').each(function () {
+            var idNumber = $(this).children('img').attr('id');
+            var classNumber = $(this).children('img').attr('class');
+            sellingCards.push(parseInt(idNumber));
+            sellingCrdsVal.push(parseInt(classNumber));
+            console.log(parseInt(classNumber));
+            console.log(sellingCards)
+        });
+    });
 }
 
 
@@ -207,7 +207,7 @@ $('#post-sell').on('submit', function (event) {
         //location.reload().delay( 1100 );
     }
     else{
-        console.log("Blah");
+        console.log("Blaha");
         event.preventDefault();
     }
 });
@@ -223,7 +223,7 @@ $('#post-play').on('submit', function (event) {
         //location.reload().delay( 1100 );
     }
     else{
-        console.log("Blah");
+        console.log("Blahb");
         event.preventDefault();
     }
 });
@@ -240,7 +240,7 @@ $('#post-form').on('submit', function (event) {
         //location.reload().delay( 1100 );
     }
     else{
-        console.log("Blah");
+        console.log("Bblah");
         event.preventDefault();
     }
 });
