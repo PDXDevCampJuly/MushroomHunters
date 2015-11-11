@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block main %}
-    <div class="profileimg">
-        {% if not imagecount %}
-            <img src="/media/profile_images/noPic.png" alt="{{ user }}'s profile picture">
-        {% else %}
-            <img src="/media/{{ current_player.profilePic }}" alt="{{ user }}'s profile picture">
-        {% endif %}
-        <!--<p>{{ user }}</p>-->
+    <!--<div class="profileimg">-->
+        <!--{% if not imagecount %}-->
+            <!--<img src="/media/profile_images/noPic.png" alt="{{ user }}'s profile picture">-->
+        <!--{% else %}-->
+            <!--<img src="/media/{{ current_player.profilePic }}" alt="{{ user }}'s profile picture">-->
+        <!--{% endif %}-->
+        <!--&lt;!&ndash;<p>{{ user }}</p>&ndash;&gt;-->
 
 
-    </div>
+    <!--</div>-->
     <ul>
 
         {% if count < 1 %}

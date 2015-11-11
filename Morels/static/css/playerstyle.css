@@ -16,8 +16,25 @@ li {
     display: table-cell;
 }
 
+/*.decay > li{*/
+    /*background-color: #F19953;*/
+    /*border-radius: 2px;*/
+/*}*/
+
 .sellPlay {
     display: inline-block;
+    margin: 11px 1px 3px 24px;
+}
+
+.gameInput{
+    background-color: #F19953;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 13px;
+}
+
+#post-form{
+    margin-left: 17px;
 }
 
  /* BASE STYLE */
@@ -172,12 +189,24 @@ input:-webkit-autofill {
 
 /*}*/
 
+p {
+    margin: 12px 15px 0;
+}
+
+
+
 .putDown{
     height: 150px;
+    /*display: inline-block;*/
 }
 
 .placehoder{
-    background-color: #999;
+    height: 150px;
+    text-align: center;
+    background-color: #ddd;
+    width: 108px;
+    padding: 1px;
+    margin: 1px 37px 10px;
 }
 
 /*li.selected { outline: 1px solid red; }*/

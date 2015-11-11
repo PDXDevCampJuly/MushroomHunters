@@ -9,19 +9,19 @@
         <p>play cards</p>
 
         <ul id="placeholder" class="putDown ui-sortable simple_with_no_drop">
-            <li class="placeholder">
+            <li class="here">
                 put cards here
             </li>
         </ul>
 
         <form id="post-sell" class="sellPlay" action="" method="post">
             {% csrf_token %}
-            <input type="submit" value="Play  cards">
+            <input type="submit" class="gameInput" value="Play  cards">
         </form>
 
         <form id="post-play" class="sellPlay" method="post">
             {% csrf_token %}
-            <input type="submit" value="Sell Cards">
+            <input type="submit" class="gameInput" value="Sell Cards">
         </form>
 
         <p>Played cards</p>
@@ -68,7 +68,7 @@
 
         <form id="post-form" action="" method="post">
             {% csrf_token %}
-            <input type="submit" value="Finished turn">
+            <input type="submit" class="gameInput" value="Finished turn">
         </form>
 
 {% endblock %}
