@@ -23,7 +23,6 @@ def signup(request):
 
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.FILES)
-        # print(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
             print('form is valid')
@@ -87,7 +86,6 @@ def user_logout(request):
 
 def home(request):
     """If user is logged: Go to home page, Else: Go to signup page"""
-    # request.session.delete_test_cookie()
 
     if request.user.is_authenticated():
         return render(request, 'home.html')
@@ -119,10 +117,6 @@ def profile(request):
 def leader_board(request):
     """Sends info to template"""
     users = MyUser.objects.all()
-    board = []
-
-    print(users)
-    print(board)
 
     return render(request, 'leaderboard.html', {'users':users})
 

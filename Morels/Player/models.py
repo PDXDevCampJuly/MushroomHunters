@@ -6,7 +6,6 @@ from Game import models as game_models
 
 
 class MyUser(models.Model):
-    # location = models.TextField(max_length=500)
     profilePic = models.ImageField(upload_to='profile_images', blank=True)
     level = models.IntegerField(default=0)
 
