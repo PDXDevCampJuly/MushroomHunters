@@ -3,17 +3,13 @@ from .models import *
 from random import shuffle
 from random import choice
 from Game.models import Forest, Night, Deck, Decay
-# from django.contrib.auth.models import User
 from Player.models import Card, User, Player, MyUser
 from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404
-from django.template import loader, RequestContext
+from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
-from django.db.models import Q
 import json
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView
 # END OF IMPORTS
 
 def make_starting_decks(person, person1):
@@ -27,7 +23,6 @@ def make_starting_decks(person, person1):
     night.save()
     deck = Deck()
     deck.save()
-    #End if variables
 
     for i in Card.objects.filter().exclude(type__startswith='Night'):
         #Appending all cards(except for the ones that's type is "Night") to the list cards
@@ -125,9 +120,7 @@ def create_game(person, person1, test):
 
 
 def game(request, game_id):
-    """Prints game"""
-
-    #Get the player object that
+    """Prints game and calls all other functions (So this is basically main)"""
 
     game = Game.objects.get(pk=game_id)
     game_player = game.player_1
@@ -139,6 +132,8 @@ def game(request, game_id):
     player_one = Player.objects.get(id=game_player.id)
     player_two = Player.objects.get(id=game.player_2.id)
     current_player = game.current_player
+
+    # Appending information to lists so I can send it to template
     if game_player.userPlayer.user.id == request.user.id:
         player_sticks = (player_one.sticks)
         for i in game.player_1.userHand.filter():
@@ -157,11 +152,6 @@ def game(request, game_id):
 
     user = request.user.username
 
-
-    # current_player = MyUser.objects.filter(user=request.user)[0]
-
-    # member = Player.objects.filter(userPlayer=current_player)
-
     for mushroom in game.forest_id.forestCard.filter():
         forest.append(mushroom)
 
@@ -172,7 +162,7 @@ def game(request, game_id):
 
     boop = json.dumps(request.user.username)
 
-    # buy_cards(request, game)
+    # Takes away turn from player and adds winner to game
     if game.current_player.turns >= 1:
         update(request, game_id)
         sell_cards(request, game_id)
@@ -180,21 +170,11 @@ def game(request, game_id):
     else:
         if game.player_2.score >= game.player_1.score:
 
-            # print(game.player_2.id)
-
-
-            # winner = MyUser.objects.get(game.player_2.userPlayer)
 
             game.winner = game.player_2.userPlayer
             game.winner.save()
         elif game.player_1.score >= game.player_2.score:
-
-            print(game.player_1.id)
-
-            # winner = MyUser.objects.get(id=game.player_1.userPlayer)
-
             game.winner = game.player_1.userPlayer
-
             game.winner.save()
 
 
@@ -218,7 +198,6 @@ def update(request, game_id):
     """Updates userHand and Forest"""
 
     if request.method == 'POST':
-        # post_text = request.POST.getlist('cards[]')
         post_forest = request.POST.getlist('forest[]')
         post_decay = request.POST.getlist('decay[]')
         game = Game.objects.get(id=game_id)
@@ -227,15 +206,12 @@ def update(request, game_id):
         decay_obj = Decay.objects.get(id=decay_id.id)
         fore = Forest.objects.get(id=forest_obj.id)
 
-        # buy_cards(request, game_id)
-
+        # Calling functions
         forest_card(game, post_forest, fore, request)
         decay_card(game, post_decay, decay_obj, request)
 
-        print(post_forest)
-
+        # Changing decay and forest
         decay = game.forest_id.forestCard.get(id=post_forest[1])
-
         other_decay = Card.objects.get(id=decay.id)
 
         decay_obj.decayDeckCard.add(other_decay)
@@ -244,9 +220,8 @@ def update(request, game_id):
         fore.forestCard.remove(decay)
         fore.save()
 
+        # Calls function to change player
         update_player(game)
-
-        # Get list git
 
         try:
             print("Yoo")
@@ -254,19 +229,16 @@ def update(request, game_id):
             print('no good')
 
         return HttpResponse(
-
-            # print('post_decay'),
-            # print(post_forest),
             print("blah")
         )
     else:
         return HttpResponse(
-            json.dumps({"nothing to see": "this isn't happening"}),
-            content_type="application/json"
+            json.dumps({"nothing to see": "this isn't happening"})
         )
 
 
 def forest_card(game, post_forest, fore, request):
+    """Updates forest"""
     post_test = request.POST.getlist('testest[]')
     forest = game.forest_id.forestCard.all()
     forest_cards = []
@@ -274,17 +246,23 @@ def forest_card(game, post_forest, fore, request):
     deck = game.deck_id
     forest_num = len(post_forest)
 
+    # See's if player called this
     if len(post_test) >= 0:
         for i in forest:
             forest_cards.append(i.id)
 
-        test = [str(i) for i in forest_cards]
+        # Appends to cards_in_forest
 
-        missing_card = list(set(test) - set(post_forest))
+        cards_in_forest = [str(i) for i in forest_cards]
 
-        test.sort()
+        # Finds missing index in when comparing cards_in forest and post_forest
+        missing_card = list(set(cards_in_forest) - set(post_forest))
+
+        # Sorting list
+        cards_in_forest.sort()
         post_forest.sort()
 
+        # Loops through missing_card and appends cards to forest
         if forest_num != len(forest_cards):
             for i in missing_card:
                 forest_delcard = game.forest_id.forestCard.filter(id=i)
@@ -301,15 +279,15 @@ def forest_card(game, post_forest, fore, request):
                         meanie.save()
                     fore.forestCard.remove(e)
                     fore.save()
-
+        # Adds cards to forest until forest length is 8
         while num <= 8:
             fore.forestCard.add(deck.deckCard.order_by('?').first())
             fore.save()
             num += 1
 
 
-
 def decay_card(game, post_decay, decay_obj, request):
+    """Updates decay Basically the forest_card but with decay"""
     decay = game.decay_id.decayDeckCard.all()
     decay_cards = []
 
@@ -318,13 +296,13 @@ def decay_card(game, post_decay, decay_obj, request):
     for i in decay:
         decay_cards.append(i.id)
 
-    test = []
+    cards_in_decay = []
 
     for i in decay_cards:
-        test.append(str(i))
+        cards_in_decay.append(str(i))
 
 
-    missing = list(set(test) - set(post_decay))
+    missing = list(set(cards_in_decay) - set(post_decay))
 
     if decay_num == 4:
         decay_obj.decayDeckCard.clear()
@@ -351,14 +329,13 @@ def decay_card(game, post_decay, decay_obj, request):
 
 @csrf_exempt
 def sell_cards(request, game_id):
+    """Updates users hand and score"""
     if request.method == 'POST':
         post_check = request.POST.getlist('sellingCards[]')
         game = Game.objects.get(id=game_id)
         hand =[]
         sell_num = len(post_check)
         game_player = game.player_1
-        player_one = Player.objects.get(id=game_player.id)
-        player_two = Player.objects.get(id=game.player_2.id)
 
         if game_player.userPlayer.user.id == request.user.id:
             for i in game_player.userHand.all():
@@ -368,21 +345,15 @@ def sell_cards(request, game_id):
             for i in game.player_2.userHand.all():
                 hand.append(i.id)
 
+        missing_card = list(set(post_check) - set(hand))
 
-        vodo = list(set(post_check) - set(hand))
-
-        # Loop through
-        # if sell_num != len(hand):
-        print(vodo)
-
-        for i in vodo:
+        for i in missing_card:
             if game_player.userPlayer.user.id == request.user.id:
                 sel_crd = game.player_1.userHand.filter(id=i)
             elif game.player_2.userPlayer.user.id == request.user.id:
                 sel_crd = game.player_2.userHand.filter(id=i)
             other_card = Card.objects.get(id=i)
             for e in sel_crd:
-                # print(e.stickValue)
 
                 if game.player_1.userPlayer.user.id == request.user.id:
 
@@ -411,7 +382,6 @@ def sell_cards(request, game_id):
             print('no good')
 
         return HttpResponse(
-            # print('post_decay'),
             print("blah")
             )
     else:
@@ -423,15 +393,14 @@ def sell_cards(request, game_id):
 
 @csrf_exempt
 def play_cards(request, game_id):
+    """Update userHand sticks"""
+    # TODO: swap play_cards with sell_cards
     if request.method == 'POST':
-        print('hand')
         post_check = request.POST.getlist('sellingCards[]')
         game = Game.objects.get(id=game_id)
         hand =[]
         sell_num = len(post_check)
         game_player = game.player_1
-        player_one = Player.objects.get(id=game_player.id)
-        player_two = Player.objects.get(id=game.player_2.id)
 
         if len(post_check) >= 0:
             if game_player.userPlayer.user.id == request.user.id:
@@ -443,19 +412,16 @@ def play_cards(request, game_id):
                      hand.append(i.id)
 
 
-            vodo = list(set(post_check) - set(hand))
+            missing_card = list(set(post_check) - set(hand))
 
-            # Loop through
-            # if sell_num != len(hand):
-
-            for i in vodo:
+            for i in missing_card:
                 if game_player.userPlayer.user.id == request.user.id:
                     sel_card = game.player_1.userHand.filter(id=i)
                 elif game.player_2.userPlayer.user.id == request.user.id:
                     sel_card = game.player_2.userHand.filter(id=i)
                 # sel_crd = game.player_2.userHand.filter(id=i)
                 other_card = Card.objects.get(id=i)
-                for e in sel_card:
+                for e in missing_card:
                     # print(e.stickValue)
 
                     if game.player_1.userPlayer.user.id == request.user.id:
@@ -490,6 +456,7 @@ def play_cards(request, game_id):
 
 @csrf_exempt
 def buy_cards(request, game_id):
+    """Updates userHand and stick"""
     post_forest = request.POST.getlist('forest[]')
     post_method = request.POST.getlist('method[]')
 
@@ -503,15 +470,14 @@ def buy_cards(request, game_id):
         deck = game.deck_id
         forest_num = len(post_forest)
 
-
         for i in forest:
             forest_cards.append(i.id)
 
-        test = [str(i) for i in forest_cards]
+        card_thats_missing = [str(i) for i in forest_cards]
 
-        missing_card = list(set(test) - set(post_forest))
+        missing_card = list(set(card_thats_missing) - set(post_forest))
 
-        test.sort()
+        card_thats_missing.sort()
         post_forest.sort()
 
         if forest_num != len(forest_cards):
@@ -555,9 +521,7 @@ def buy_cards(request, game_id):
             )
 
 def update_player(game):
-    print(game.current_player)
-    print(game.player_2.turns)
-    print(game.player_1.turns)
+    """Updates player"""
     if game.current_player == game.player_1:
         # print(game.current_player)
         # print(game.current_player.turns)

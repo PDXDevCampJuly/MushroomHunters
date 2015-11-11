@@ -518,51 +518,6 @@
     "fields": {
       "cardValue": 0,
       "stickValue": 0,
-      "picture": "static/basket.png",
-      "type": "Basket"
-    }
-  },
-  {
-    "model": "Player.Card",
-    "fields": {
-      "cardValue": 0,
-      "stickValue": 0,
-      "picture": "static/basket.png",
-      "type": "Basket"
-    }
-  },
-  {
-    "model": "Player.Card",
-    "fields": {
-      "cardValue": 0,
-      "stickValue": 0,
-      "picture": "static/basket.png",
-      "type": "Basket"
-    }
-  },
-  {
-    "model": "Player.Card",
-    "fields": {
-      "cardValue": 0,
-      "stickValue": 0,
-      "picture": "static/basket.png",
-      "type": "Basket"
-    }
-  },
-  {
-    "model": "Player.Card",
-    "fields": {
-      "cardValue": 0,
-      "stickValue": 0,
-      "picture": "static/basket.png",
-      "type": "Basket"
-    }
-  },
-  {
-    "model": "Player.Card",
-    "fields": {
-      "cardValue": 0,
-      "stickValue": 0,
       "picture": "static/pan.png",
       "type": "Pan"
     }

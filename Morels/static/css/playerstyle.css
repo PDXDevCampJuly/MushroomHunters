@@ -241,3 +241,17 @@ ul > li > img, .placehoder{
 .gameLink {
 
 }
+
+.gamewrapperul{
+    margin-left: 41%;
+    padding: 0;
+}
+
+.gamewrapper{
+    text-align: center;
+    min-width: 50px;
+    padding: 75px 0 10px;
+    max-height: 560px;
+    margin: 0 auto 0;
+    overflow: scroll;
+}

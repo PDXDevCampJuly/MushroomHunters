@@ -11,26 +11,28 @@
 
 
     <!--</div>-->
-    <ul>
+<div class="gamewrapper">
+        <ul class="gamewrapperul">
 
-        {% if count < 1 %}
-            <p>You are not playing any games currently</p>
-        {% else %}
+            {% if count < 1 %}
+                <p>You are not playing any games currently</p>
+            {% else %}
 
-            {% for game in current_games %}
-            <li class="gameLink">
-                <a href="/game/{{ game.id }}">Currently playing game with
-                    {% if user == game.player_2.userPlayer.user.username %}
-                        {{ game.player_1 }}
-                    {% else %}
-                        {{ game.player_2 }}
-                    {% endif %}
-                </a>
-            </li>
-            {% endfor %}
+                {% for game in current_games %}
+                <li class="gameLink">
+                    <a href="/game/{{ game.id }}">Currently playing game with
+                        {% if user == game.player_2.userPlayer.user.username %}
+                            {{ game.player_1 }}
+                        {% else %}
+                            {{ game.player_2 }}
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
 
-        {% endif %}
-    </ul>
+            {% endif %}
+        </ul>
+    </div>
 
 {% endblock %}
 

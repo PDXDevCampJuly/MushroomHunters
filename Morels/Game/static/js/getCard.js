@@ -8,11 +8,10 @@ var decay = [];
 var sellingCards = [];
 var sellingCrdsVal = [];
 var crdSource = [];
-var plsBeFale = true;
-var method = ['buyCards', '2'];
-var testtest = ['takefromfeet'];
+var hasClass = true;
+var method = ['1', '2'];
+var lengthlist = ['1'];
 var pan = [];
-//var buying =false;
 
 (function createPost() {
     $('#hand').each(function () {
@@ -25,6 +24,7 @@ var pan = [];
 }());
 
 (function(){
+    //makes decay and forest only connect to hand and hand only connect to placeholder
     if (cards.length < 8){
         $(function () {
 	    $("#decay,#forest").sortable({
@@ -47,7 +47,7 @@ var pan = [];
 	});
     });
     }
-
+    //If users hand is full decay and forest are diconected
     else{
         $(function () {
 	    $(" #hand ").sortable({
@@ -64,6 +64,7 @@ var pan = [];
     }
 }());
 
+// If cards in forest(that aren't at users feet) stickValue is less than users sticks - 1 change class to make it movable
 $('.forest').mouseover(function(e) {
     var cardClass = ($(e.target).attr('class'));
     if (cardClass == 0){
@@ -71,14 +72,12 @@ $('.forest').mouseover(function(e) {
     }
     var stick = sticks - parseInt(cardClass);
     if (stick >= 0){
-        console.log("goo");
         $(this).mouseover(function() {
             $(this).attr('class', 'test');
 
         });
     }
     else{
-        console.log("boop");
         $('.forest').sortable({
             items: ':not(.forest)',
         start: function(){
@@ -87,32 +86,12 @@ $('.forest').mouseover(function(e) {
             $this.data('pos', $this.index());
         });
     }
-    //change: function(){
-    //    $sortable = $(this);
-    //    $statics = $('.static', this).detach();
-    //    $helper = $('<li></li>').prependTo(this);
-    //    $statics.each(function(){
-    //        var $this = $(this);
-    //        var target = $this.data('pos');
-    //
-    //        $this.insertAfter($('li', $sortable).eq(target));
-    //    });
-    //    $helper.remove();
-    //}
 });
     }
 });
 
-
-//$(".test").mousedown(function (e)
-//{
-//    e.preventDefault(); //this nullifies the click
-//    if ($(this).hasClass('.test'))
-//    {
-//
-//    }
-//});
-
+// Send ajax to view that will play cards
+// TODO: swap sell with play
 function sendSellAjax() {
     $.ajax({
         url: '/game/' + $game_id + '/sell_cards/', // the endpoint
@@ -130,7 +109,8 @@ function sendSellAjax() {
     });
 }
 
-
+// Send ajax to view that will sell cards
+// TODO: swap sell with play
 function sendPlayAjax() {
     $.ajax({
         url: '/game/' + $game_id + '/play_cards/', // the endpoint
@@ -144,17 +124,17 @@ function sendPlayAjax() {
         // handle a non-successful response
         error: function (xhr, errmsg, err) {
             console.log(errmsg, err);
-            console.log("gi")
         }
 
     });
 }
 
+// Send ajax to view that will add card from forest
 function sendAjax() {
     $.ajax({
         url: '/game/' + $game_id + '/update/', // the endpoint
         method: "POST", // http method
-        data: {cards: cards, forest: forest, decay:decay, testtest:testtest},
+        data: {cards: cards, forest: forest, decay:decay, lengthlist:lengthlist},
         success: function (json) {
             $('#post-form').val(''); // remove the value from the input
             console.log("success"); // another sanity check
@@ -167,6 +147,7 @@ function sendAjax() {
     });
 }
 
+// Appends cards in list decay to array
 function createDecay() {
     $('#decay').each(function () {
 
@@ -177,6 +158,7 @@ function createDecay() {
     });
 }
 
+// Appends cards in list decay to array
 function createForest() {
     $('#forest').each(function () {
 
@@ -187,6 +169,7 @@ function createForest() {
     });
 }
 
+// Appends cards in list decay to array
 function createSell() {
     $('#placeholder').each(function () {
 
@@ -200,13 +183,15 @@ function createSell() {
 }
 
 
+// Checks cards to see if card in hand has class test
 function checkBuy() {
     $('#hand').each(function () {
-          plsBeFale = ($(this).find('li').hasClass('test '));
+          hasClass = ($(this).find('li').hasClass('test '));
           buying = true;
     });
 }
 
+// Send ajax to view that will add card to hand and remove sticks from user
 function sendBuyAjax(){
     $.ajax({
         url: '/game/' + $game_id + '/buy_cards/', // the endpoint
@@ -224,6 +209,7 @@ function sendBuyAjax(){
     });
 }
 
+// Checks to see if A) there's more than 1 card and B) if there's a pan
 function checkValid() {
     $('#placeholder').each(function () {
 
@@ -238,6 +224,7 @@ function checkValid() {
     });
 }
 
+// Calls ajax if A)user is current player, B)if cards are matching, C) there's a pan, D)there's two or more cards
 $('#post-sell').on('submit', function (event) {
     event.preventDefault();
     console.log("Selling form submitted! Let's see if it goes through");  // sanity check
@@ -245,7 +232,6 @@ $('#post-sell').on('submit', function (event) {
         checkValid();
         var chkval = crdSource.allValuesSame();
         if (chkval == true){
-            console.log(crdSource.length);
             if (pan.length == 1 ) {
                 if (crdSource.length >= 2) {
                     event.preventDefault();
@@ -254,7 +240,6 @@ $('#post-sell').on('submit', function (event) {
                 }
             }
         }
-        //location.reload().delay( 1100 );
     }
     else{
         event.preventDefault();
@@ -262,13 +247,13 @@ $('#post-sell').on('submit', function (event) {
 });
 
 
+// Calls ajax if A)user is current player, B)is cards are matching, C)if there's more than 1 card
 $('#post-play').on('submit', function (event) {
     event.preventDefault();
       // sanity check
     if (player == currentPlayer) {
         checkValid();
         var checkval = crdSource.allValuesSame();
-        console.log(checkval);
         if (checkval == true){
             console.log(crdSource.length);
             if (crdSource.length >= 2) {
@@ -277,17 +262,16 @@ $('#post-play').on('submit', function (event) {
                 event.preventDefault();
                 createSell();
                 sendPlayAjax();
-                //location.reload().delay( 1100 );
             }
         }
     }
     else{
-        console.log("Blahb");
         event.preventDefault();
     }
 });
 
 
+// Calls ajax if A)user is current player, B) class is test
 $('#post-form').on('submit', function (event) {
     event.preventDefault();
     console.log("Takeing cards form submitted! Let's see if it goes through");  // sanity check
@@ -297,13 +281,9 @@ $('#post-form').on('submit', function (event) {
         createForest();
         checkBuy();
         console.log('printing sendBuyAjax');
-            console.log(plsBeFale);
-        if (plsBeFale === false) {
-            //sendBuyAjax();
+        if (hasClass === false) {
             sendAjax();
-            //location.reload().delay( 1100 );
         }else{
-            //sendAjax();
             sendBuyAjax();
         }
     }
@@ -314,7 +294,7 @@ $('#post-form').on('submit', function (event) {
 });
 
 
-
+// see's if everything matches
 Array.prototype.allValuesSame = function() {
 
     for(var i = 1; i < this.length; i++)
